@@ -24,6 +24,14 @@
 #include <cmath>
 #include <vector>
 
+enum Dir{
+  None,
+  Left,
+  Right,
+  Up,
+  Down
+};
+
 int break_tie(int num);
 
 //first number = how many the same the second is standard deviation
@@ -48,6 +56,8 @@ int get_number();
 
 void init_game();
 
+void get_movment(Dir dir, int board[4][4]);
+
 //I need to move this over to main
 //I'm literally just copying functions and renaiming them
 
@@ -55,8 +65,30 @@ float get_eval(float *strats, int board[4][4]);
 
 float monte_carlo(float *strats, int board[4][4]);
 
+void copy_arr(int source[4][4], int destination[4][4]);
 
-void gameLoop(float strats[6]);
+int gameLoop(float strats[6]);
+
+int get_result(int board[4][4]);
+
+Dir get_maxx(std::unordered_map<Dir,float> &dic);
+
+int gen_score(int board[4][4]);
+
+float generateRandomFloat();
+
+
+void gen_random_strats(float strat[6]);
+
+void adjust_strat(float strat[6], float best[6]);
+
+void get_best_strat(float one[6], float two[6], float three[6]);
+
+
+
+float *get_smart();
+
+
 
 
 
