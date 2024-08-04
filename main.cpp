@@ -304,10 +304,75 @@ void move(Direction dir,int board[4][4]){
   }
 }
 
+bool is_over(int board[4][4]){
+  if (is_legal_move(Left, board)){
+    return false;
+  }
+  if (is_legal_move(Right,board)){
+    return false;
+  }
+  if (is_legal_move(Up, board)){
+    return false;
+  }
+    return !is_legal_move(Down,board);
+}
+
+void new_game(int board[4][4]){
+  for (int i=0; i<4;++i){
+    for (int x=0;x<4;++x){
+      board[i][x] = 0;
+    }
+  }
+  start_game(board);
+}
+
+
+void game_over(float screenW, float screenH, int score, int board[4][4]) {
+    float boxW = screenW - 20;
+    float boxH = screenH - 20;
+    Rectangle rec = {10, 10, boxW, boxH};
+    Rectangle reset = {screenW / 2 - 100, screenH / 2 + 50, 200, 50};
+
+    while (!WindowShouldClose()) {
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+
+        DrawRectangleRec(rec, LIGHTGRAY);
+        DrawRectangleLines(rec.x, rec.y, boxW, boxH, BLACK);
+        DrawText("GAME OVER", screenW / 2 - MeasureText("GAME OVER", 100) / 2, screenH / 2 - 100, 100, BLACK);
+
+        DrawRectangleRec(reset, LIGHTGRAY);
+        DrawRectangleLines(reset.x, reset.y, reset.width, reset.height, BLACK);
+        DrawText("RESET", reset.x + reset.width / 2 - MeasureText("RESET", 30) / 2, reset.y + reset.height / 2 - 15, 30, BLACK);
+
+        std::string text = "Score: " + std::to_string(score);
+        DrawText(text.c_str(), screenW / 2 - MeasureText(text.c_str(), 50) / 2, screenH / 2, 50, BLACK);
+
+        EndDrawing();
+
+        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            Vector2 mousePos = GetMousePosition();
+            if (CheckCollisionPointRec(mousePos, reset)) {
+                new_game(board);
+                return;
+            }
+        }
+    }
+}
+int get_score(int board[4][4]){
+  int score = 0;
+  for (int i=0; i<4; ++i){
+    for (int x=0;x<4;++x){
+      score += board[i][x];
+    }
+  }
+  return score;
+}
 
 //at some point need to add a check at the end to see 
 //if there are any remaining legal moves
 int main(){
+  bool over = false;
   int board[4][4];
   for (int i=0;i<4;++i){
     for (int x=0;x<4;++x){
@@ -337,7 +402,7 @@ int main(){
 
   
   while (!WindowShouldClose()){
-
+    if (!over){
 
     key_pressed = GetKeyPressed();
     if (key_pressed){
@@ -360,7 +425,15 @@ int main(){
         DrawText(text.c_str(), boxes[i][x].x+ boxW/2,boxes[i][x].y+boxH/2, 50, BLACK);
       }
     }
-   EndDrawing(); 
+   EndDrawing();
+   over = is_over(board);
+    
+  }
+    else{
+      int score = get_score(board);
+      game_over(screenW,screenH,score,board);
+      over = false;
+    }
   }
 
   CloseWindow();
