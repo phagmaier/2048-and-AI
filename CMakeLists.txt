@@ -16,7 +16,12 @@ pkg_check_modules(RAYLIB REQUIRED raylib)
 
 # Specify your executable
 #add_executable(runme ${SOURCES})
-add_executable(runme "main.cpp")
+set(SOURCES
+    brain.cpp
+    main.cpp
+)
+#add_executable(runme "main.cpp")
+add_executable(runme ${SOURCES})
 
 # Include directories
 target_include_directories(runme PRIVATE 

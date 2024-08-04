@@ -4,6 +4,7 @@
 #include <utility>
 #include "raylib.h"
 #include <string>
+#include "brain.h"
 
 enum Direction{
   None,
@@ -372,6 +373,7 @@ int get_score(int board[4][4]){
 //at some point need to add a check at the end to see 
 //if there are any remaining legal moves
 int main(){
+  /*
   bool over = false;
   int board[4][4];
   for (int i=0;i<4;++i){
@@ -379,9 +381,9 @@ int main(){
       board[i][x] = 0;
     }
   }
-  //start_game(board);
-  board[0][0] = 2;
-  board[0][1] = 2;
+  start_game(board);
+  //board[0][0] = 2;
+  //board[0][1] = 2;
   int key_pressed = 0;
 
   InitWindow(0,0,"2048");
@@ -437,5 +439,10 @@ int main(){
   }
 
   CloseWindow();
+  */
+
+
+
+
   return 0;
 }
