@@ -228,6 +228,7 @@ CMakeFiles/runme.dir/main.cpp.o
  /usr/include/locale.h
  /usr/include/math.h
  /usr/include/pthread.h
+ /usr/include/raylib.h
  /usr/include/sched.h
  /usr/include/stdc-predef.h
  /usr/include/stdint.h
