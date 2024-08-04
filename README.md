@@ -11,6 +11,15 @@ without any clue and then also give it the ability to dynamically update the val
 of just how important each of these things are. If all else fails i'll at least 
 build a NN from scratch in c++ with a working crappy copy of 2048
 
+## WORK IN PROGRESS
+Currently I'm doing something dumb and just seeing if i can give a very dumb algorithm some of the most 
+obvious and possibly useless information about the game and initially give it a uniform weight to each 
+of these pieces of information and then also a model with skewed weights and compare and then essentially
+doing a kind of form of regret in order to determine what to weigh more and see if we can get a half decent 
+algorithm out of a very dumb approach. It's a pretty straighforward game so gonna see just how easy and simple
+and algoithm is needed to actually achieve some form of intellegence or sucess in this game. It's just a fun
+project i'm playing around with as i rewrite my very bad poker solver
+
 
 ## File Table
 
