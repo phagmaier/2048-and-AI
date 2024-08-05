@@ -54,59 +54,66 @@ std::vector<std::pair<int,int>> get_empties(int board[4][4]){
   return empties;
 }
 
-bool check_left(int board[4][4]){
-  for (int i=0; i<4; ++i){
-    for (int x=0; x<3; ++x){
-      if (board[i][x] == 0 || board[i][x] == board[i][x+1]){
-        if (board[i][x] || board[i][x+1]){
-          return true;
-        }
-      }
-    }
-  }
-  return false;
-}
 
-bool check_right(int board[4][4]){
-  for (int i=0; i<4; ++i){
-    for (int x=0; x<3; ++x){
-      if (board[i][x+1] == 0 || board[i][x+1] == board[i][x]){
-        if (board[i][x] || board[i][x+1]){
-          return true;
+bool check_left(int board[4][4]) {
+    for (int i = 0; i < 4; ++i) {
+        for (int x = 0; x < 3; ++x) {
+            if (board[i][x] == 0 && board[i][x+1] != 0) {
+                return true;
+            }
+            if (board[i][x] == board[i][x+1] && board[i][x] != 0) {
+                return true;
+            }
         }
-
-      }
     }
-  }
-  return false;
+    return false;
 }
 
 
-bool check_up(int board[4][4]){
-  for (int i=0; i<3; ++i){
-    for (int x=0; x<4; ++x){
-      if (board[x][i] == 0 || board[x][i+1] == board[x][i]){
-        if (board[i][x] || board[i][x+1]){
-          return true;
+bool check_right(int board[4][4]) {
+    for (int i = 0; i < 4; ++i) {
+        for (int x = 3; x > 0; --x) {
+            if (board[i][x] == 0 && board[i][x-1] != 0) {
+                return true;
+            }
+            if (board[i][x] == board[i][x-1] && board[i][x] != 0) {
+                return true;
+            }
         }
-      }
     }
-  }
-  return false;
+    return false;
 }
 
 
-bool check_down(int board[4][4]){
-  for (int i=0; i<3; ++i){
-    for (int x=0; x<4; ++x){
-      if (board[x][i+1] == 0 || board[x][i+1] == board[x][i]){
-        if (board[i][x] || board[i][x+1]){
-          return true;
+
+bool check_up(int board[4][4]) {
+    for (int i = 0; i < 3; ++i) {
+        for (int x = 0; x < 4; ++x) {
+            if (board[i][x] == 0 && board[i+1][x] != 0) {
+                return true;
+            }
+            if (board[i][x] == board[i+1][x] && board[i][x] != 0) {
+                return true;
+            }
         }
-      }
     }
-  }
-  return false;
+    return false;
+}
+
+
+
+bool check_down(int board[4][4]) {
+    for (int i = 3; i > 0; --i) {
+        for (int x = 0; x < 4; ++x) {
+            if (board[i][x] == 0 && board[i-1][x] != 0) {
+                return true;
+            }
+            if (board[i][x] == board[i-1][x] && board[i][x] != 0) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 void clean_row_left(int board[4]){
@@ -372,8 +379,9 @@ int get_score(int board[4][4]){
 
 //at some point need to add a check at the end to see 
 //if there are any remaining legal moves
+/*
 int main(){
-  /*
+  
   bool over = false;
   int board[4][4];
   for (int i=0;i<4;++i){
@@ -439,14 +447,16 @@ int main(){
   }
 
   CloseWindow();
-  */
-
-  float *final_strat = get_smart();
-
-  std::cout << "The final score of playing this strat is: ";
-  int score =gameLoop(final_strat);
-  std::cout << score << "\n";
 
 
   return 0;
 }
+*/
+
+
+
+int main(){
+  get_best_strat();
+  return 0;
+}
+
