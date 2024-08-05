@@ -1,5 +1,5 @@
 CMakeFiles/runme.dir/main.cpp.o: \
- /home/parker/Desktop/Code/C++/2048/main.cpp /usr/include/stdc-predef.h \
+ /home/phagmaier/Desktop/Code/2048/main.cpp /usr/include/stdc-predef.h \
  /usr/include/c++/14.2.1/random \
  /usr/include/c++/14.2.1/bits/requires_hosted.h \
  /usr/include/c++/14.2.1/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -179,7 +179,7 @@ CMakeFiles/runme.dir/main.cpp.o: \
  /usr/include/c++/14.2.1/bits/ostream.tcc /usr/include/c++/14.2.1/istream \
  /usr/include/c++/14.2.1/bits/istream.tcc /usr/include/c++/14.2.1/utility \
  /usr/include/c++/14.2.1/bits/stl_relops.h /usr/include/raylib.h \
- /home/parker/Desktop/Code/C++/2048/brain.h \
+ /home/phagmaier/Desktop/Code/2048/brain.h \
  /usr/include/c++/14.2.1/unordered_map \
  /usr/include/c++/14.2.1/bits/unordered_map.h \
  /usr/include/c++/14.2.1/bits/hashtable.h \

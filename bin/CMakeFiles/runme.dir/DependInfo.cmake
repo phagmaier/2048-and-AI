@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/parker/Desktop/Code/C++/2048/brain.cpp" "CMakeFiles/runme.dir/brain.cpp.o" "gcc" "CMakeFiles/runme.dir/brain.cpp.o.d"
-  "/home/parker/Desktop/Code/C++/2048/main.cpp" "CMakeFiles/runme.dir/main.cpp.o" "gcc" "CMakeFiles/runme.dir/main.cpp.o.d"
+  "/home/phagmaier/Desktop/Code/2048/brain.cpp" "CMakeFiles/runme.dir/brain.cpp.o" "gcc" "CMakeFiles/runme.dir/brain.cpp.o.d"
+  "/home/phagmaier/Desktop/Code/2048/main.cpp" "CMakeFiles/runme.dir/main.cpp.o" "gcc" "CMakeFiles/runme.dir/main.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

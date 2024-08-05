@@ -1,4 +1,4 @@
-# Install script for directory: /home/parker/Desktop/Code/C++/2048
+# Install script for directory: /home/phagmaier/Desktop/Code/2048
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -57,6 +57,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-  file(WRITE "/home/parker/Desktop/Code/C++/2048/bin/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "/home/phagmaier/Desktop/Code/2048/bin/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
