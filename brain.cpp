@@ -15,6 +15,8 @@ float generateRandomFloat() {
 }
 
 int gen_score(int board[4][4]){
+
+  std::cout << "generating scores\n";
   int total=0;
   for (int i=0;i<4;++i){
     for (int x=0;x<4;++x){
@@ -25,8 +27,10 @@ int gen_score(int board[4][4]){
 }
 
 void copy_arr(int source[4][4], int destination[4][4]){
+
+  std::cout << "copying an array\n";
   for (int i=0; i<4; ++i){
-    for (int x=4; x<4; ++x){
+    for (int x=0; x<4; ++x){
       destination[i][x] = source[i][x];
     }
   }
@@ -55,6 +59,8 @@ int break_tie(int num){
 
 //remeber to delete when done
 int * get_col_arr(int num, int board[4][4]){
+
+  std::cout << "making a col\n";
   int *arr = new int[4];
   for (int i=0;i<4;++i){
     arr[i] = board[i][num];
@@ -66,13 +72,15 @@ int get_real_num(int num){
   int count = 0;
   int number = 2;
   while (number != num){
-    num *=2;
+    number *=2;
     ++count;
   }
   return count;
 }
 
 float standard_deviation(float total, int board[4], int count){
+
+  std::cout << "CALCULATED STD\n";
   float sum =0;
   float mean = total /4;
   for (int i=0;i<4;++i){
@@ -86,6 +94,8 @@ float standard_deviation(float total, int board[4], int count){
 //gives the largest number of same blocks
 //and also gives the std
 std::pair<int,float> row_uniformity(int board[4]){
+
+  std::cout << "GETTING ROW UNIFORMITY\n";
   int count = 0;
   int total = 0;
   std::unordered_map<int,int> dic;
@@ -111,6 +121,7 @@ float euclid(std::pair<int,int> cords, int x, int y){
 }
 
 float distance(int board[4][4]){
+  std::cout << "GETTING DISTANCES\n";
   std::pair<int,int> pos;
   int max = 0;
   for (int i=0;i<4;++i){
@@ -137,6 +148,7 @@ float distance(int board[4][4]){
 }
 
 int free_squares(int board[4][4]){
+  std::cout << "GETTING NUMBER OF SQUARES\n";
   int total = 0;
   for (int i=0; i<4;++i){
     for (int x=0;x<4;++x){
@@ -166,6 +178,7 @@ std::pair<int,int> get_random_square(std::vector<std::pair<int,int>> &empties){
 }
 
 std::vector<std::pair<int,int>> get_free_squares(int board[4][4]){
+  std::cout << "GETTING OPEN POSITIONS \n";
   std::vector<std::pair<int,int>> empties;
   for (int i=0;i<4;++i){
     for (int x=0;x<4;++x){
@@ -179,6 +192,7 @@ std::vector<std::pair<int,int>> get_free_squares(int board[4][4]){
 
 
 void init_game(int board[4][4]){
+  std::cout << "INITIALIZING THE GAME\n";
   for (int i=0;i<4;++i){
     for (int x=0;x<4;++x){
       board[i][x] = 0;
@@ -197,6 +211,7 @@ void init_game(int board[4][4]){
 
 
 float get_eval(float *strats, int board[4][4]){
+  std::cout << "GETTING THE EVALUATIOn\n";
   float same_total_row=0;
   float same_total_col = 0;
   float std_total_row =0;
@@ -238,6 +253,8 @@ float get_eval(float *strats, int board[4][4]){
 //of whatever gets the highest score
 //at first strats will start out uniform
 float monte_carlo(float *strats, int board[4][4]){
+  std::cout << "STARTING MONTE CARLO\n";
+  std::cout<< "THE PROBLEM IS IN MONTE CARLO SOMEWHERE CAN'T GET OPEN SQUARES FOR SOME REASON\n";
   float total=0;
   for (int iterations=0;iterations<10;++iterations){
     int new_board[4][4]; 
@@ -251,12 +268,14 @@ float monte_carlo(float *strats, int board[4][4]){
     new_board[pos.first][pos.second] = get_number();
     total+= get_eval(strats,new_board);
   }
+  std::cout << "IF THIS PRINTS THE PROBLEM ISN'T IN MONTE CARLO\n";
   return total/10; //will have to do this with left right up and down (if possible to make all those choices)
 }
 
 
 
 bool check_l(int board[4][4]){
+  std::cout << "STARTING L CHECK\n";
   for (int i=0; i<4; ++i){
     for (int x=0; x<3; ++x){
       if (board[i][x] == 0 || board[i][x] == board[i][x+1]){
@@ -270,6 +289,7 @@ bool check_l(int board[4][4]){
 }
 
 bool check_r(int board[4][4]){
+  std::cout << "STARTING R CHECK\n";
   for (int i=0; i<4; ++i){
     for (int x=0; x<3; ++x){
       if (board[i][x+1] == 0 || board[i][x+1] == board[i][x]){
@@ -285,6 +305,7 @@ bool check_r(int board[4][4]){
 
 
 bool check_u(int board[4][4]){
+  std::cout << "STARTING U CHECK\n";
   for (int i=0; i<3; ++i){
     for (int x=0; x<4; ++x){
       if (board[x][i] == 0 || board[x][i+1] == board[x][i]){
@@ -299,6 +320,7 @@ bool check_u(int board[4][4]){
 
 
 bool check_d(int board[4][4]){
+  std::cout << "STARTING D CHECK\n";
   for (int i=0; i<3; ++i){
     for (int x=0; x<4; ++x){
       if (board[x][i+1] == 0 || board[x][i+1] == board[x][i]){
@@ -312,6 +334,7 @@ bool check_d(int board[4][4]){
 }
 
 void clean_left(int board[4]){
+  std::cout << "CLEANING LEFT\n";
   int count = 0;
   for (int i=0; i<4; ++i){
     if (board[i]){
@@ -325,6 +348,7 @@ void clean_left(int board[4]){
 }
 
 void clean_right(int board[4]){
+  std::cout << "CLEANING RIGHT\n";
   int count = 3;
   for (int i=3; i> -1; --i){
     if (board[i]){
@@ -340,6 +364,7 @@ void clean_right(int board[4]){
 
 
 void move_l(int board[4][4]){
+  std::cout << "MOVING LEFT\n";
   for (int i=0;i<4;++i){
     clean_left(board[i]);
     for (int x=0; x<3; ++x){
@@ -359,6 +384,7 @@ void move_l(int board[4][4]){
 
 
 void move_r(int board[4][4]){
+  std::cout << "MOVING right\n";
   for (int i=0;i<4;++i){
     clean_right(board[i]);
     for (int x=3; x>0; --x){
@@ -378,6 +404,7 @@ void move_r(int board[4][4]){
 
 
 void clean_up(int board[4][4], int col){
+  std::cout << "CLEANING UP\n";
   int count = 0;
   for (int i = 0; i < 4; ++i) {
     if (board[i][col]) {
@@ -391,6 +418,7 @@ void clean_up(int board[4][4], int col){
 }
 
 void clean_down(int board[4][4], int col){
+  std::cout << "CLEANING DOWN\n";
   int count = 3;
   for (int i = 3; i >= 0; --i) {
     if (board[i][col]) {
@@ -404,6 +432,7 @@ void clean_down(int board[4][4], int col){
 }
 
 void move_u(int board[4][4]){
+  std::cout << "MOVING UP\n";
   for (int col = 0; col < 4; ++col) {
     clean_up(board, col);
     for (int row = 0; row < 3; ++row) {
@@ -424,6 +453,7 @@ void move_u(int board[4][4]){
 }
 
 void move_d(int board[4][4]){
+  std::cout << "MOVING DOWN\n";
   for (int col = 0; col < 4; ++col) {
     clean_down(board, col);
     for (int row = 3; row > 0; --row) {
@@ -445,15 +475,16 @@ void move_d(int board[4][4]){
 
 
 void get_movment(Dir dir, int board[4][4]){
-  if (dir == Left){
+  std::cout << "GETTING MOVMENT TO MAKE \n";
+  if (dir == L){
     move_l(board);
     return;
   }
-  if (dir == Right){
+  if (dir == R){
     move_r(board);
     return;
   }
-  if (dir == Up){
+  if (dir == U){
     move_u(board);
     return;
   }
@@ -461,6 +492,7 @@ void get_movment(Dir dir, int board[4][4]){
 }
 
 int get_result(int board[4][4]){
+  std::cout << "GETTING RESULTS\n";
   int total = 0;
   for (int i=0;i<4;++i){
     for (int x=0;x<4;++x){
@@ -471,18 +503,30 @@ int get_result(int board[4][4]){
 }
 
 
-Dir get_maxx(std::unordered_map<Dir,float> &dic){
-  Dir dir = None;
-  float maxx = 0;
-  for (auto &i : dic){
-    if (i.second > maxx){
-      maxx = i.second;
-      dir = i.first;
+
+Dir get_maxx(std::unordered_map<Dir, float> &dic) {
+  std::cout << "GETTING MAXX\n";
+    Dir dir = N;
+    //float maxx = -1; // Initialize maxx to a very low value
+    float maxx = -std::numeric_limits<float>::infinity();
+    for (auto &i : dic) {
+        if (i.second > maxx) {
+            maxx = i.second;
+            dir = i.first;
+        }
     }
-  }
-  return dir;
+    return dir;
 }
 
+void print_board(int board[4][4]){
+  for (int i=0;i<4;++i){
+    for (int x=0;x<4;++x){
+      std::cout << board[i][x] << " ";
+    }
+    std::cout << "\n";
+  }
+  std::cout << "\n\n\n\n\n";
+}
 
 //should probably do a random sample
 //score after going right and after going left
@@ -493,58 +537,77 @@ Dir get_maxx(std::unordered_map<Dir,float> &dic){
 //col number of same vals 
 //number of empty squares
 //euclidian distance largest tile from the center square
-int gameLoop(float strats[6]){
-  bool over = false;
-  int board[4][4];
-  init_game(board);
 
-  while (!over){
-    std::unordered_map<Dir,float> scores;
+int gameLoop(float strats[6]) {
+    bool over = false;
+    int board[4][4];
+    init_game(board);
 
-    bool left = check_l(board);
-    bool right = check_r(board);
-    bool up = check_u(board);
-    bool down = check_d(board);
-    if (left){
-      int l_board[4][4];
-      copy_arr(board,l_board);
-      move_l(l_board);
-      scores[Left] = monte_carlo(strats, l_board);
-    }
-    if (right){
-      int r_board[4][4];
-      copy_arr(board,r_board);
-      move_l(r_board);
-      scores[Right] = monte_carlo(strats, r_board);
-    }
-    if (up){
-      int u_board[4][4];
-      copy_arr(board,u_board);
-      move_l(u_board);
-      scores[Up] = monte_carlo(strats, u_board);
-    }
-    if (down){
-      int d_board[4][4];
-      copy_arr(board,d_board);
-      move_l(d_board);
-      scores[Down] = monte_carlo(strats, d_board);
-    }
-    Dir dir = get_maxx(scores);
-    if (dir != None){
-      get_movment(dir, board);
-    }
-    else{
-      return gen_score(board);
-    }
+    while (!over) {
+        std::unordered_map<Dir, float> scores;
 
-  }
-  std::cout << "ERROR THIS SHOULD NEVER PRINT ERROR IN GAME LOOP\n";
-  return -1;
-  }
+        bool left = check_l(board);
+        bool right = check_r(board);
+        bool up = check_u(board);
+        bool down = check_d(board);
+        if (left) {
+            int l_board[4][4];
+            copy_arr(board, l_board);
+            move_l(l_board);
+            scores[L] = monte_carlo(strats, l_board);
+        }
+        else{
+          scores[L] = -std::numeric_limits<float>::infinity();
+        }
+        if (right) {
+            int r_board[4][4];
+            copy_arr(board, r_board);
+            move_r(r_board);
+            scores[R] = monte_carlo(strats, r_board);
+        }
+        else{
+          scores[R] = -std::numeric_limits<float>::infinity();
+        }
+        if (up) {
+            int u_board[4][4];
+            copy_arr(board, u_board);
+            move_u(u_board);
+            scores[U] = monte_carlo(strats, u_board);
+        }
+        else{
+          scores[U] = -std::numeric_limits<float>::infinity();
+        }
+        if (down) {
+            int d_board[4][4];
+            copy_arr(board, d_board);
+            move_d(d_board);
+            scores[D] = monte_carlo(strats, d_board);
+        }
+        else{
+          scores[D] =-std::numeric_limits<float>::infinity();
+        }
+
+        Dir dir = get_maxx(scores);
+        if (dir != N) {
+            get_movment(dir, board);
+            std::vector<std::pair<int, int>> empties = get_free_squares(board);
+            if (!empties.empty()) {
+                std::pair<int, int> pos = get_random_square(empties);
+                board[pos.first][pos.second] = get_number();
+            }
+        } else {
+            //print_board(board);
+            return gen_score(board);
+        }
+    }
+    std::cout << "ERROR THIS SHOULD NEVER PRINT ERROR IN GAME LOOP\n";
+    return -1;
+}
 
 
 
 void adjust_strat(float strat[6], float best[6]){
+  std::cout << "ADJUSTING STRAT\n";
   for (int i=0;i<6;++i){
     if (best[i] > strat[i]){
       strat[i]+= strat[i] * generateRandomFloat();
@@ -556,6 +619,7 @@ void adjust_strat(float strat[6], float best[6]){
 }
 
 void get_best_strat(float one[6], float two[6], float three[6]){
+  std::cout << "GETTING BEST STRAT\n";
   if (one >= two && one >= three){
     adjust_strat(two,one);
     adjust_strat(three,one);
@@ -573,12 +637,14 @@ void get_best_strat(float one[6], float two[6], float three[6]){
 
 
 void gen_random_strats(float strat[6]){
+  std::cout << "GENERATING RANDOM STRAT\n";
   for (int i=0;i<6;++i){
     strat[i] = generateRandomFloat();
   }
 }
 
 float *get_smart(){
+  std::cout << "GETTING SMART \n";
   float one[6];
   for (int i=0;i<6;++i){
     one[i] = 1.0/6.0;
@@ -620,8 +686,4 @@ float *get_smart(){
         final[i] = three[i];
       }
       return final;
-
-
-
-
 }

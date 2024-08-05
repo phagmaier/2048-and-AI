@@ -441,7 +441,11 @@ int main(){
   CloseWindow();
   */
 
+  float *final_strat = get_smart();
 
+  std::cout << "The final score of playing this strat is: ";
+  int score =gameLoop(final_strat);
+  std::cout << score << "\n";
 
 
   return 0;

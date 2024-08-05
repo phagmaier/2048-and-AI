@@ -25,11 +25,11 @@
 #include <vector>
 
 enum Dir{
-  None,
-  Left,
-  Right,
-  Up,
-  Down
+  N,
+  L,
+  R,
+  U,
+  D
 };
 
 int break_tie(int num);
@@ -87,6 +87,8 @@ void get_best_strat(float one[6], float two[6], float three[6]);
 
 
 float *get_smart();
+
+void print_board(int board[4][4]);
 
 
 

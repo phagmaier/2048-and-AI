@@ -11,16 +11,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(RAYLIB REQUIRED raylib)
 
-# Find all .cpp files in the src directory
-#file(GLOB SOURCES "src/*.cpp")
-
-# Specify your executable
-#add_executable(runme ${SOURCES})
+# Define sources
 set(SOURCES
     brain.cpp
     main.cpp
 )
-#add_executable(runme "main.cpp")
+
+# Specify your executable
 add_executable(runme ${SOURCES})
 
 # Include directories
@@ -31,3 +28,17 @@ target_include_directories(runme PRIVATE
 
 # Link the libraries
 target_link_libraries(runme PRIVATE ${RAYLIB_LIBRARIES})
+
+# Set the build type if not specified
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+endif()
+
+# Set compiler options for different build types
+target_compile_options(runme PRIVATE
+    $<$<CONFIG:Debug>:-g>                          # Debugging symbols
+    $<$<CONFIG:Release>:-O3 -DNDEBUG>              # Optimization level 3 and disable assertions
+    $<$<CONFIG:RelWithDebInfo>:-O2 -g>             # Optimization level 2 with debugging symbols
+    $<$<CONFIG:MinSizeRel>:-Os -DNDEBUG>           # Optimization for size and disable assertions
+)
+
