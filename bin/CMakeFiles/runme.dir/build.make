@@ -69,47 +69,31 @@ include CMakeFiles/runme.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/runme.dir/flags.make
 
-CMakeFiles/runme.dir/brain.cpp.o: CMakeFiles/runme.dir/flags.make
-CMakeFiles/runme.dir/brain.cpp.o: /home/phagmaier/Desktop/Code/2048/brain.cpp
-CMakeFiles/runme.dir/brain.cpp.o: CMakeFiles/runme.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/phagmaier/Desktop/Code/2048/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/runme.dir/brain.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/runme.dir/brain.cpp.o -MF CMakeFiles/runme.dir/brain.cpp.o.d -o CMakeFiles/runme.dir/brain.cpp.o -c /home/phagmaier/Desktop/Code/2048/brain.cpp
+CMakeFiles/runme.dir/src/main.cpp.o: CMakeFiles/runme.dir/flags.make
+CMakeFiles/runme.dir/src/main.cpp.o: /home/phagmaier/Desktop/Code/2048/src/main.cpp
+CMakeFiles/runme.dir/src/main.cpp.o: CMakeFiles/runme.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/phagmaier/Desktop/Code/2048/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/runme.dir/src/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/runme.dir/src/main.cpp.o -MF CMakeFiles/runme.dir/src/main.cpp.o.d -o CMakeFiles/runme.dir/src/main.cpp.o -c /home/phagmaier/Desktop/Code/2048/src/main.cpp
 
-CMakeFiles/runme.dir/brain.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/runme.dir/brain.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phagmaier/Desktop/Code/2048/brain.cpp > CMakeFiles/runme.dir/brain.cpp.i
+CMakeFiles/runme.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/runme.dir/src/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phagmaier/Desktop/Code/2048/src/main.cpp > CMakeFiles/runme.dir/src/main.cpp.i
 
-CMakeFiles/runme.dir/brain.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/runme.dir/brain.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phagmaier/Desktop/Code/2048/brain.cpp -o CMakeFiles/runme.dir/brain.cpp.s
-
-CMakeFiles/runme.dir/main.cpp.o: CMakeFiles/runme.dir/flags.make
-CMakeFiles/runme.dir/main.cpp.o: /home/phagmaier/Desktop/Code/2048/main.cpp
-CMakeFiles/runme.dir/main.cpp.o: CMakeFiles/runme.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/phagmaier/Desktop/Code/2048/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/runme.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/runme.dir/main.cpp.o -MF CMakeFiles/runme.dir/main.cpp.o.d -o CMakeFiles/runme.dir/main.cpp.o -c /home/phagmaier/Desktop/Code/2048/main.cpp
-
-CMakeFiles/runme.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/runme.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phagmaier/Desktop/Code/2048/main.cpp > CMakeFiles/runme.dir/main.cpp.i
-
-CMakeFiles/runme.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/runme.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phagmaier/Desktop/Code/2048/main.cpp -o CMakeFiles/runme.dir/main.cpp.s
+CMakeFiles/runme.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/runme.dir/src/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phagmaier/Desktop/Code/2048/src/main.cpp -o CMakeFiles/runme.dir/src/main.cpp.s
 
 # Object files for target runme
 runme_OBJECTS = \
-"CMakeFiles/runme.dir/brain.cpp.o" \
-"CMakeFiles/runme.dir/main.cpp.o"
+"CMakeFiles/runme.dir/src/main.cpp.o"
 
 # External object files for target runme
 runme_EXTERNAL_OBJECTS =
 
-runme: CMakeFiles/runme.dir/brain.cpp.o
-runme: CMakeFiles/runme.dir/main.cpp.o
+runme: CMakeFiles/runme.dir/src/main.cpp.o
 runme: CMakeFiles/runme.dir/build.make
 runme: CMakeFiles/runme.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/phagmaier/Desktop/Code/2048/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable runme"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/phagmaier/Desktop/Code/2048/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable runme"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/runme.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

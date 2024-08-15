@@ -1,8 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/runme.dir/brain.cpp.o"
-  "CMakeFiles/runme.dir/brain.cpp.o.d"
-  "CMakeFiles/runme.dir/main.cpp.o"
-  "CMakeFiles/runme.dir/main.cpp.o.d"
+  "CMakeFiles/runme.dir/src/main.cpp.o"
+  "CMakeFiles/runme.dir/src/main.cpp.o.d"
   "runme"
   "runme.pdb"
 )

@@ -13,8 +13,7 @@ pkg_check_modules(RAYLIB REQUIRED raylib)
 
 # Define sources
 set(SOURCES
-    brain.cpp
-    main.cpp
+    src/main.cpp
 )
 
 # Specify your executable
