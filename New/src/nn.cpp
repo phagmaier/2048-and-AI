@@ -1,5 +1,6 @@
 #include "nn.h"
 
+
 int get_max_square(int arr[4][4]){
   int maxx = 0;
   for (int i=0;i<4;++i){
@@ -47,12 +48,12 @@ void zero_arr(int *arr, int size){
   }
 }
 
-float get_random_float(){
-  static std::default_random_engine generator;
-  std::uniform_real_distribution<float> distribution(-1.0f, 1.0f);
-  return distribution(generator);
+float get_random_float() {
+    static std::random_device rd;
+    static std::default_random_engine generator(rd());
+    static std::uniform_real_distribution<float> distribution(-1.0f, 1.0f);  // Static distribution
+    return distribution(generator);
 }
-
 float *create_weights(int num){
   float *arr = new float[num];
   for (int i=0; i<num;++i){
@@ -99,6 +100,7 @@ void leaky_relu(float *inputs, int size){
 //this is wrong
 //arr1 will be the values arr2 will be the weights
 
+/*
 void multiply_layers(float *input, float *weights, int in_size, int weights_size, float *output){
   for (int i=0; i<weights_size; ++i){
     for (int x=0;x<in_size;++x){
@@ -106,6 +108,39 @@ void multiply_layers(float *input, float *weights, int in_size, int weights_size
     }
   }
 }
+
+//all out matrixes are going to be flat but are technically '2d'
+void multiply_layers(float *input, float *weights, int row1, int col1, int row2, 
+                     int col2, float *output){
+  int count = 0;
+  for (int i=0; i<row1;++i){
+    for (int x=0;x<col2; ++i){
+      output[count++] += input[(convert_cords(i,x,col1))] * weights[(convert_cords(i,x,col2))];
+    }
+  }
+}
+
+*/
+
+void multiply_layers(float* input, float* weights, int row1, int col1, int row2, int col2, float* output) {
+    // Check for dimension compatibility: col1 must be equal to row2
+    if (col1 != row2) {
+        std::cerr << "Matrix dimensions do not match for multiplication!" << std::endl;
+        return;
+    }
+
+    for (int i = 0; i < row1; ++i) {
+        for (int j = 0; j < col2; ++j) {
+            float sum = 0;
+            for (int k = 0; k < col1; ++k) {
+                sum += input[convert_cords(i, k, col1)] * weights[convert_cords(k, j, col2)];
+            }
+            output[convert_cords(i, j, col2)] = sum;
+        }
+    }
+}
+
+
 
 
 /*
@@ -187,22 +222,23 @@ void update(int board[4][4], float *my_board){
 }
 
 Direction run_through_NN(float *inputs, float *w1, float *w2, float *w3, int board[4][4]){
-  float hidden1[LAYER_1];
-  float hidden2[LAYER_2];
+  //static int row2 =-1;
+  float hidden1[ROW3 * COL3];
+  float hidden2[ROW5 * COL5];
   float outputs[OUTPUT_LAYER];
   zero_arr(hidden1, LAYER_1);
   zero_arr(hidden2, LAYER_2);
   zero_arr(outputs, OUTPUT_LAYER);
-  multiply_layers(inputs, w1,LAYER_1,LAYER_1,hidden1);
-  //for now not gonna use the relu activation function
+
+  multiply_layers(inputs, w1,ROW1,COL1,ROW2,COL2,hidden1);
   //leaky_relu(hidden1,LAYER_1);
-  multiply_layers(hidden1,w2, LAYER_1, LAYER_2, hidden2);
-  //for now not gonna use the relu activation function
+  relu(hidden1, ROW3 * COL3);
+  multiply_layers(hidden1,w2,ROW3,COL3,ROW4,COL4, hidden2);
   //leaky_relu(hidden2,LAYER_2);
-  multiply_layers(hidden2,w3, LAYER_2, OUTPUT_LAYER, outputs);
-  //for now not gonna use the relu activation function
-  //leaky_relu()
+  relu(hidden2, ROW5 * COL6);
+  multiply_layers(hidden2,w3,ROW4,COL4,ROW5,COL5,outputs);
   //leaky_relu(outputs,OUTPUT_LAYER);
+  relu(outputs, OUTPUT_LAYER);
   return get_max(outputs, board);
 }
 int get_best_weights(float arr[NN_NUMBER]){
@@ -235,6 +271,8 @@ int get_results(float *w1, float *w2, float *w3){
     move(dir, twoD);
     update(twoD,oneD);
   }
+  //print_board(twoD);
+  //std::cout << "\n\n";
   return get_score(twoD);
   //return get_max_square(twoD);
 }
@@ -249,13 +287,12 @@ int run() {
     Weights w3s[NN_NUMBER];
     
     for (int i = 0; i < NN_NUMBER; ++i) {
-        w1s[i] = create_weights(LAYER_1);
-        w2s[i] = create_weights(LAYER_2);
+        w1s[i] = create_weights(ROW2 * COL2);
+        w2s[i] = create_weights(ROW4 * COL4);
         w3s[i] = create_weights(OUTPUT_LAYER);
     }
 
     for (int i = 0; i < ITERATIONS; ++i) {
-        
         //std::cout << "ON ITERATION " << i << "\n";
         //std::cout << "---------------------------\n";
         int best_index = 0;
@@ -268,7 +305,7 @@ int run() {
         }
         best_index = get_best_weights(scores);
         if ((i+1) %100 == 0){
-          std::cout << "THE BEST SCORE AFTER " << i+1 << "ITERATIONS IS: \n";
+          std::cout << "THE BEST SCORE AFTER " << i+1 << " ITERATIONS IS: \n";
           std::cout << scores[best_index] << "\n";
           std::cout << "--------------------------------------\n";
         }
