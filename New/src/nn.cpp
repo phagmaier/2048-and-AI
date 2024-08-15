@@ -1,5 +1,17 @@
 #include "nn.h"
 
+int get_max_square(int arr[4][4]){
+  int maxx = 0;
+  for (int i=0;i<4;++i){
+    for (int x=0;x<4;++x){
+      if (arr[i][x] > maxx){
+        maxx = arr[i][x];
+      }
+    }
+  }
+  return maxx;
+}
+
 
 void print_dir(Direction dir){
   switch (dir){
@@ -72,13 +84,21 @@ void init_weights(float *arr, int size){
   }
 }
 
+void relu(float *inputs, int size) {
+    for (int i = 0; i < size; ++i) {
+        inputs[i] = std::max(0.0f, inputs[i]);
+    }
+}
+
 void leaky_relu(float *inputs, int size){
     for (int i=0; i<size; ++i) {
         inputs[i] = (inputs[i] > 0) ? inputs[i] : ALPHA * inputs[i];
     }
 }
 
+//this is wrong
 //arr1 will be the values arr2 will be the weights
+
 void multiply_layers(float *input, float *weights, int in_size, int weights_size, float *output){
   for (int i=0; i<weights_size; ++i){
     for (int x=0;x<in_size;++x){
@@ -86,6 +106,22 @@ void multiply_layers(float *input, float *weights, int in_size, int weights_size
     }
   }
 }
+
+
+/*
+void multiply_layers(float *input, float *weights, int in_size, int weights_size, float *output) {
+    // Initialize the output array to zero
+    //std::fill_n(output, weights_size, 0);
+
+    // Compute the weighted sum for each output neuron
+    for (int i = 0; i < weights_size; ++i) {
+      output[i] = 0;
+        for (int j = 0; j < in_size; ++j) {
+            output[i] += input[j] * weights[i * in_size + j];
+        }
+    }
+}
+*/
 
 int get_scaled_num(int num) {
     int original = num;
@@ -151,24 +187,25 @@ void update(int board[4][4], float *my_board){
 }
 
 Direction run_through_NN(float *inputs, float *w1, float *w2, float *w3, int board[4][4]){
-  float hidden1[16];
-  float hidden2[16];
-  float outputs[4];
-  zero_arr(hidden1, 16);
-  zero_arr(hidden2, 16);
-  zero_arr(outputs, 4);
+  float hidden1[LAYER_1];
+  float hidden2[LAYER_2];
+  float outputs[OUTPUT_LAYER];
+  zero_arr(hidden1, LAYER_1);
+  zero_arr(hidden2, LAYER_2);
+  zero_arr(outputs, OUTPUT_LAYER);
   multiply_layers(inputs, w1,LAYER_1,LAYER_1,hidden1);
   //for now not gonna use the relu activation function
-  //leaky_relu()
+  //leaky_relu(hidden1,LAYER_1);
   multiply_layers(hidden1,w2, LAYER_1, LAYER_2, hidden2);
   //for now not gonna use the relu activation function
-  //leaky_relu()
+  //leaky_relu(hidden2,LAYER_2);
   multiply_layers(hidden2,w3, LAYER_2, OUTPUT_LAYER, outputs);
   //for now not gonna use the relu activation function
   //leaky_relu()
+  //leaky_relu(outputs,OUTPUT_LAYER);
   return get_max(outputs, board);
 }
-int get_best_weights(int arr[NN_NUMBER]){
+int get_best_weights(float arr[NN_NUMBER]){
   int maxx = -1;
   int index = -1;
   for (int i=0;i<NN_NUMBER; ++i){
@@ -190,70 +227,77 @@ int get_results(float *w1, float *w2, float *w3){
   //float w3[OUTPUT_LAYER];
   new_game(twoD);
   update(twoD,oneD);
-  init_weights(w1, LAYER_1);
-  init_weights(w2, LAYER_2);
-  init_weights(w3, OUTPUT_LAYER);
+  //init_weights(w1, LAYER_1);
+  //init_weights(w2, LAYER_2);
+  //init_weights(w3, OUTPUT_LAYER);
   while (!is_over(twoD)){
     Direction dir = run_through_NN(oneD,w1,w2,w3, twoD);
     move(dir, twoD);
     update(twoD,oneD);
   }
   return get_score(twoD);
+  //return get_max_square(twoD);
 }
 
 //5 of the arrays are going to be completley random each time
-int run(){
-  int scores[NN_NUMBER];
-  zero_arr(scores, NN_NUMBER);
-  Weights w1s[NN_NUMBER];
-  Weights w2s[NN_NUMBER];
-  Weights w3s[NN_NUMBER];
-  for (int i=0; i<NN_NUMBER; ++i){
-    w1s[i] = create_weights(LAYER_1);
-    w2s[i] = create_weights(LAYER_2);
-    w3s[i] = create_weights(OUTPUT_LAYER);
-  }
 
-  for (int i=0; i<ITERATIONS; ++i){
-    std::cout << "ON ITERATION " << i << "\n";
-    std::cout << "---------------------------\n";
-    int best_index = 0;
-    for (int x=0;x<NN_NUMBER;++x){
-      scores[x] = get_results(w1s[x],w2s[x],w3s[x]);
-    }
-    best_index = get_best_weights(scores);
-    for (int x=0; x<RANDOM_INDEX;++x){
-      if (x!=best_index){
-        update_layer(w1s[best_index], w1s[x], LAYER_1);
-        update_layer(w2s[best_index], w2s[x], LAYER_2);
-        update_layer(w3s[best_index], w3s[x], OUTPUT_LAYER);
-      }
+int run() {
+    float scores[NN_NUMBER];
+    zero_arr(scores, NN_NUMBER);
+    Weights w1s[NN_NUMBER];
+    Weights w2s[NN_NUMBER];
+    Weights w3s[NN_NUMBER];
+    
+    for (int i = 0; i < NN_NUMBER; ++i) {
+        w1s[i] = create_weights(LAYER_1);
+        w2s[i] = create_weights(LAYER_2);
+        w3s[i] = create_weights(OUTPUT_LAYER);
     }
 
-    for (int x=RANDOM_INDEX; x<NN_NUMBER;++x){
-      if (x!=best_index){
-        init_weights(w1s[x],LAYER_1);
-        init_weights(w2s[x],LAYER_2);        
-        init_weights(w3s[x],OUTPUT_LAYER);
-      }
+    for (int i = 0; i < ITERATIONS; ++i) {
+        
+        //std::cout << "ON ITERATION " << i << "\n";
+        //std::cout << "---------------------------\n";
+        int best_index = 0;
+        for (int x = 0; x < NN_NUMBER; ++x) {
+          scores[x] = 0;
+          for (int z=0;z<10;++z){
+            scores[x] += get_results(w1s[x], w2s[x], w3s[x]);
+          }
+            scores[x] /= 10;
+        }
+        best_index = get_best_weights(scores);
+        if ((i+1) %100 == 0){
+          std::cout << "THE BEST SCORE AFTER " << i+1 << "ITERATIONS IS: \n";
+          std::cout << scores[best_index] << "\n";
+          std::cout << "--------------------------------------\n";
+        }
+        for (int x = 0; x < RANDOM_INDEX; ++x) {
+            if (x != best_index) {
+                update_layer(w1s[best_index], w1s[x], LAYER_1);
+                update_layer(w2s[best_index], w2s[x], LAYER_2);
+                update_layer(w3s[best_index], w3s[x], OUTPUT_LAYER);
+            }
+        }
+
+        for (int x = RANDOM_INDEX; x < NN_NUMBER; ++x) {
+            if (x != best_index) {
+                init_weights(w1s[x], LAYER_1);
+                init_weights(w2s[x], LAYER_2);        
+                init_weights(w3s[x], OUTPUT_LAYER);
+            }
+        }
     }
-  }
 
-  for (int i=0;i<NN_NUMBER;++i){
-    delete w1s[i];
-    delete w2s[i];
-    delete w3s[i];
-  }
+    // Deallocate memory at the end when no longer needed
+    for (int i = 0; i < NN_NUMBER; ++i) {
+        delete[] w1s[i];
+        delete[] w2s[i];
+        delete[] w3s[i];
+    }
 
-  int best_index = get_best_weights(scores);
-  for(int i=0;i<NN_NUMBER;++i){
-    scores[i] = get_results(w1s[i],w2s[i],w3s[i]);
-
-    best_index = get_best_weights(scores);
-  }
-  return scores[best_index];
+    // Determine best index and return score
+    int best_index = get_best_weights(scores);
+    return scores[best_index];
 }
-
-
-
 

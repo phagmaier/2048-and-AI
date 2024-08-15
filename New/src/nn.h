@@ -6,11 +6,12 @@
 #ifndef NN_H
 #define NN_H 
 
-#define ITERATIONS 10000
+//#define ITERATIONS 10000
+#define ITERATIONS 1000
 #define LAYER_1 16
 #define LAYER_2 16
 #define OUTPUT_LAYER 4
-#define SCALER .01
+#define SCALER .001
 #define ALPHA 0.01
 #define NN_NUMBER 10
 #define RANDOM_INDEX 5
@@ -24,6 +25,7 @@
 #include <unordered_map>
 
 using Weights = float*;
+int get_max_square(int arr[4][4]);
 inline void print_bools(bool b){b ? std::cout << "True" : std::cout << "false";}
 float get_random_float();
 float get_random_scaler();
