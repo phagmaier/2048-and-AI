@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/runme.dir/src/game.cpp.o CMakeFiles/runme.dir/src/main.cpp.o CMakeFiles/runme.dir/src/nn.cpp.o -o runme

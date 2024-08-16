@@ -1,3 +1,0 @@
-/home/phagmaier/Desktop/Code/2048/AI/bin/CMakeFiles/runme.dir
-/home/phagmaier/Desktop/Code/2048/AI/bin/CMakeFiles/edit_cache.dir
-/home/phagmaier/Desktop/Code/2048/AI/bin/CMakeFiles/rebuild_cache.dir

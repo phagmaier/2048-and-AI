@@ -1,1 +1,0 @@
-/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/runme.dir/src/main.cpp.o CMakeFiles/runme.dir/src/brain.cpp.o CMakeFiles/runme.dir/src/myFunctions.cpp.o CMakeFiles/runme.dir/src/NN.cpp.o CMakeFiles/runme.dir/src/value.cpp.o -o runme  -lraylib
