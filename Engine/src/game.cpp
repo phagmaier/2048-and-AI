@@ -1,7 +1,5 @@
 #include "game.h"
 
-
-
 void print_board(int arr[4][4]){
   for (int i=0;i<4;++i){
     for (int x=0; x<4; ++x){
@@ -21,7 +19,6 @@ int get_random_int() {
     }
     return 4;
 }
-
 
 std::pair<int, int> get_pos(std::vector<std::pair<int, int>> &empties) {
     static std::random_device rd;
@@ -56,7 +53,6 @@ bool check_left(int board[4][4]) {
     return false;
 }
 
-
 bool check_right(int board[4][4]) {
     for (int i = 0; i < 4; ++i) {
         for (int x = 3; x > 0; --x) {
@@ -71,8 +67,6 @@ bool check_right(int board[4][4]) {
     return false;
 }
 
-
-
 bool check_up(int board[4][4]) {
     for (int i = 0; i < 3; ++i) {
         for (int x = 0; x < 4; ++x) {
@@ -86,8 +80,6 @@ bool check_up(int board[4][4]) {
     }
     return false;
 }
-
-
 
 bool check_down(int board[4][4]) {
     for (int i = 3; i > 0; --i) {
@@ -128,8 +120,6 @@ void clean_row_right(int board[4]){
     board[count] = 0; 
   }
 }
-
-
 
 void move_left(int board[4][4]) {
     for (int i = 0; i < 4; ++i) {
@@ -246,8 +236,6 @@ bool is_legal_move(Direction dir, int board[4][4]){
   std::cout << "ERRROR this should never print\n";
   return false;
 }
-
-
 
 void start_game(int board[4][4]){
   std::vector<std::pair<int,int>> empties = get_empties(board);

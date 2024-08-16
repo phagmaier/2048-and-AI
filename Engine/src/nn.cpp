@@ -1,5 +1,12 @@
 #include "nn.h"
 
+/*
+*MOST OF THIS IS USELESS 'REAL CODE' (STILL SHIT)
+*STARTS AT LIKE 319 THIS WAS JUST ME PLAYING AROUND
+*EXPERIMENTING & AND BEING LAZY AND STUPID
+*
+*/
+
 void copy_board(int board[4][4], int empty_board[4][4]){
   for (int i=0;i<4;++i){
     for (int x=0;x<4;++x){
@@ -8,6 +15,7 @@ void copy_board(int board[4][4], int empty_board[4][4]){
   }
 }
 
+//useless as of now
 int get_max_square(int arr[4][4]){
   int maxx = 0;
   for (int i=0;i<4;++i){
@@ -43,12 +51,13 @@ void print_dir(Direction dir){
   }
 }
 
+//useless as of now
 void zero_arr(float *arr, int size){
   for (int i=0;i<size;++i){
     arr[i] = 0;
   }
 }
-
+//useless as of now
 void zero_arr(int *arr, int size){
   for (int i=0;i<size;++i){
     arr[i] = 0;
@@ -61,6 +70,8 @@ float get_random_float() {
     static std::uniform_real_distribution<float> distribution(-1.0f, 1.0f);  // Static distribution
     return distribution(generator);
 }
+
+//useless as of now
 float *create_weights(int num){
   float *arr = new float[num];
   for (int i=0; i<num;++i){
@@ -69,7 +80,7 @@ float *create_weights(int num){
   return arr;
 }
 
-
+//useless as of now
 float get_random_scaler(){
 static std::default_random_engine generator;
   std::uniform_real_distribution<float> distribution(0.9f, 0.01);
@@ -86,49 +97,28 @@ float get_random_tile(){
   return 4;
 }
 
+//useless as of now
 void init_weights(float *arr, int size){
   for (int i=0;i<size;++i){
     arr[i] = get_random_float();
   }
 }
 
+//useless as of now
 void relu(float *inputs, int size) {
     for (int i = 0; i < size; ++i) {
         inputs[i] = std::max(0.0f, inputs[i]);
     }
 }
 
+//useless as of now
 void leaky_relu(float *inputs, int size){
     for (int i=0; i<size; ++i) {
         inputs[i] = (inputs[i] > 0) ? inputs[i] : ALPHA * inputs[i];
     }
 }
 
-//this is wrong
-//arr1 will be the values arr2 will be the weights
-
-/*
-void multiply_layers(float *input, float *weights, int in_size, int weights_size, float *output){
-  for (int i=0; i<weights_size; ++i){
-    for (int x=0;x<in_size;++x){
-      output[i] += input[x] * weights[i];
-    }
-  }
-}
-
-//all out matrixes are going to be flat but are technically '2d'
-void multiply_layers(float *input, float *weights, int row1, int col1, int row2, 
-                     int col2, float *output){
-  int count = 0;
-  for (int i=0; i<row1;++i){
-    for (int x=0;x<col2; ++i){
-      output[count++] += input[(convert_cords(i,x,col1))] * weights[(convert_cords(i,x,col2))];
-    }
-  }
-}
-
-*/
-
+//useless as of now
 void multiply_layers(float* input, float* weights, int row1, int col1, int row2, int col2, float* output) {
     // Check for dimension compatibility: col1 must be equal to row2
     if (col1 != row2) {
@@ -147,24 +137,7 @@ void multiply_layers(float* input, float* weights, int row1, int col1, int row2,
     }
 }
 
-
-
-
-/*
-void multiply_layers(float *input, float *weights, int in_size, int weights_size, float *output) {
-    // Initialize the output array to zero
-    //std::fill_n(output, weights_size, 0);
-
-    // Compute the weighted sum for each output neuron
-    for (int i = 0; i < weights_size; ++i) {
-      output[i] = 0;
-        for (int j = 0; j < in_size; ++j) {
-            output[i] += input[j] * weights[i * in_size + j];
-        }
-    }
-}
-*/
-
+//useless as of now
 int get_scaled_num(int num) {
     int original = num;
     int count = 0;
@@ -176,6 +149,7 @@ int get_scaled_num(int num) {
     return count+1;
 }
 
+//useless as of now
 Direction get_max(float *arr, int board[4][4]){
   static std::unordered_map<int,Direction> dic = {
   {0,Left},{1,Right}, {2,Down}, {3,Up}
@@ -195,7 +169,7 @@ Direction get_max(float *arr, int board[4][4]){
   return dir;
 }
 
-//at first going to try and just update it by .01
+//useless as of now
 void update_layer(float *best_layer, float *worse_layer, int range){
   for (int i=0; i<range;++i){
     if (worse_layer[i] >= 0){
@@ -207,6 +181,7 @@ void update_layer(float *best_layer, float *worse_layer, int range){
   }
 }
 
+//useless as of now
 void convert_2d_to_one(int two_d[4][4], float *one_d){
   for (int i=0; i<4;++i){
     for (int x=0;x<4;++x){
@@ -215,6 +190,7 @@ void convert_2d_to_one(int two_d[4][4], float *one_d){
   }
 }
 
+//useless as of now
 void update(int board[4][4], float *my_board){
   for (int i=0;i<4;++i){
     for (int x=0;x<4;++x){
@@ -228,6 +204,7 @@ void update(int board[4][4], float *my_board){
   }
 }
 
+//useless as of now
 Direction run_through_NN(float *inputs, float *w1, float *w2, float *w3, int board[4][4]){
   //static int row2 =-1;
   float hidden1[ROW3 * COL3];
@@ -260,7 +237,7 @@ int get_best_weights(float arr[NN_NUMBER]){
   return index;
 }
 
-//this actually needs to take in all the weights
+//useless as of now
 int get_results(float *w1, float *w2, float *w3){
   //float *inputs, float *w1, float *w2, float *w3
   int twoD[4][4];
@@ -284,8 +261,7 @@ int get_results(float *w1, float *w2, float *w3){
   //return get_max_square(twoD);
 }
 
-//5 of the arrays are going to be completley random each time
-
+//useless as of now 
 int run() {
     float scores[NN_NUMBER];
     zero_arr(scores, NN_NUMBER);
@@ -344,6 +320,8 @@ int run() {
     int best_index = get_best_weights(scores);
     return scores[best_index];
 }
+
+//START OF THE BAD STUFF BUT THE BAD STUFF THAT SOLVES THE GAME
 
 std::vector<Direction> get_possible_moves(int board[4][4]){
   std::vector<Direction> moves;

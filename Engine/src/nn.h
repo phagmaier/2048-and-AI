@@ -49,7 +49,6 @@ float get_random_float();
 float get_random_scaler();
 void init_weights(float *arr, int size);
 float *create_weights(int num);
-//void multiply_layers(float *arr1, float *arr2, int size1, int size2, float *output_arr);
 void multiply_layers(float* input, float* weights, int row1, int col1, int row2, int col2, float* output);
 void reset_arr(int *arr, int size);
 float get_random_tile();
@@ -75,8 +74,7 @@ void update(int board[4][4], float *my_board);
 int get_best_weights(int arr[10]);
 Direction run_through_NN(float *inputs, float *w1, float *w2, float *w3, int board[4][4]);
 int get_results(float *w1, float *w2, float *w3);
-//returns the best score
-int run();
+int run();//returns the best score
 Direction get_max_move(std::vector<std::pair<float,Direction>> &vec);
 std::vector<Direction> get_possible_moves(int board[4][4]);
 Direction get_random_move(std::vector<Direction> &moves);
