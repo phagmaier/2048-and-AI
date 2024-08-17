@@ -19,6 +19,9 @@ set(SOURCES
   src/game.cpp
   src/main.cpp
   src/nn.cpp
+  src/value.cpp
+  src/myFunctions.cpp
+  
 )
 
 # Add the executable

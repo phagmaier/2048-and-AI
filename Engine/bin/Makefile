@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/phagmaier/Desktop/Code/2048/New
+CMAKE_SOURCE_DIR = /home/phagmaier/Desktop/Code/2048/Engine
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/phagmaier/Desktop/Code/2048/New/bin
+CMAKE_BINARY_DIR = /home/phagmaier/Desktop/Code/2048/Engine/bin
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/phagmaier/Desktop/Code/2048/New/bin/CMakeFiles /home/phagmaier/Desktop/Code/2048/New/bin//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/phagmaier/Desktop/Code/2048/Engine/bin/CMakeFiles /home/phagmaier/Desktop/Code/2048/Engine/bin//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/phagmaier/Desktop/Code/2048/New/bin/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/phagmaier/Desktop/Code/2048/Engine/bin/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -177,6 +177,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runme.dir/build.make CMakeFiles/runme.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/myFunctions.o: src/myFunctions.cpp.o
+.PHONY : src/myFunctions.o
+
+# target to build an object file
+src/myFunctions.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runme.dir/build.make CMakeFiles/runme.dir/src/myFunctions.cpp.o
+.PHONY : src/myFunctions.cpp.o
+
+src/myFunctions.i: src/myFunctions.cpp.i
+.PHONY : src/myFunctions.i
+
+# target to preprocess a source file
+src/myFunctions.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runme.dir/build.make CMakeFiles/runme.dir/src/myFunctions.cpp.i
+.PHONY : src/myFunctions.cpp.i
+
+src/myFunctions.s: src/myFunctions.cpp.s
+.PHONY : src/myFunctions.s
+
+# target to generate assembly for a file
+src/myFunctions.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runme.dir/build.make CMakeFiles/runme.dir/src/myFunctions.cpp.s
+.PHONY : src/myFunctions.cpp.s
+
 src/nn.o: src/nn.cpp.o
 .PHONY : src/nn.o
 
@@ -201,6 +225,30 @@ src/nn.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runme.dir/build.make CMakeFiles/runme.dir/src/nn.cpp.s
 .PHONY : src/nn.cpp.s
 
+src/value.o: src/value.cpp.o
+.PHONY : src/value.o
+
+# target to build an object file
+src/value.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runme.dir/build.make CMakeFiles/runme.dir/src/value.cpp.o
+.PHONY : src/value.cpp.o
+
+src/value.i: src/value.cpp.i
+.PHONY : src/value.i
+
+# target to preprocess a source file
+src/value.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runme.dir/build.make CMakeFiles/runme.dir/src/value.cpp.i
+.PHONY : src/value.cpp.i
+
+src/value.s: src/value.cpp.s
+.PHONY : src/value.s
+
+# target to generate assembly for a file
+src/value.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runme.dir/build.make CMakeFiles/runme.dir/src/value.cpp.s
+.PHONY : src/value.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -216,9 +264,15 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/myFunctions.o"
+	@echo "... src/myFunctions.i"
+	@echo "... src/myFunctions.s"
 	@echo "... src/nn.o"
 	@echo "... src/nn.i"
 	@echo "... src/nn.s"
+	@echo "... src/value.o"
+	@echo "... src/value.i"
+	@echo "... src/value.s"
 .PHONY : help
 
 

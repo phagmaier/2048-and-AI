@@ -2,6 +2,7 @@
 #include "nn.h"
 #include "game.h"
 #include <vector>
+#include "value.h"
 #define ITERS 100
 int main(){
   /*
@@ -9,6 +10,11 @@ int main(){
   std::cout << "THE FINAL SCORE YOU GOT AFTER TRAINING IS ";
   std::cout << final_score << "\n";
   */
+  Value a = Value(4);
+  float b = 2;
+  Value c = a.power(b);
+  c.backward();
+  std::cout << c << "\n";
   int scores[ITERS];
   for (int i=0;i<ITERS;++i){
 

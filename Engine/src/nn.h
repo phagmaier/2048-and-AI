@@ -43,7 +43,6 @@
 void copy_board(int board[4][4], int empty_board[4][4]);
 void mat_mul(float *input, float *weights, float *output, int col);
 using Weights = float*;
-int get_max_square(int arr[4][4]);
 inline void print_bools(bool b){b ? std::cout << "True" : std::cout << "false";}
 float get_random_float();
 float get_random_scaler();
@@ -51,7 +50,6 @@ void init_weights(float *arr, int size);
 float *create_weights(int num);
 void multiply_layers(float* input, float* weights, int row1, int col1, int row2, int col2, float* output);
 void reset_arr(int *arr, int size);
-float get_random_tile();
 int get_scaled_num(int num);
 void zero_arr(float *arr, int size);
 void zero_arr(int *arr, int size);

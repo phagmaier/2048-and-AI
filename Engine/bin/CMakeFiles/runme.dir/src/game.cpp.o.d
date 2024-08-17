@@ -1,7 +1,7 @@
 CMakeFiles/runme.dir/src/game.cpp.o: \
- /home/phagmaier/Desktop/Code/2048/New/src/game.cpp \
+ /home/phagmaier/Desktop/Code/2048/Engine/src/game.cpp \
  /usr/include/stdc-predef.h \
- /home/phagmaier/Desktop/Code/2048/New/src/game.h \
+ /home/phagmaier/Desktop/Code/2048/Engine/src/game.h \
  /usr/include/c++/14.2.1/random \
  /usr/include/c++/14.2.1/bits/requires_hosted.h \
  /usr/include/c++/14.2.1/x86_64-pc-linux-gnu/bits/c++config.h \

@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/phagmaier/Desktop/Code/2048/New
+CMAKE_SOURCE_DIR = /home/phagmaier/Desktop/Code/2048/Engine
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/phagmaier/Desktop/Code/2048/New/bin
+CMAKE_BINARY_DIR = /home/phagmaier/Desktop/Code/2048/Engine/bin
 
 # Include any dependencies generated for this target.
 include CMakeFiles/runme.dir/depend.make
@@ -70,52 +70,82 @@ include CMakeFiles/runme.dir/progress.make
 include CMakeFiles/runme.dir/flags.make
 
 CMakeFiles/runme.dir/src/game.cpp.o: CMakeFiles/runme.dir/flags.make
-CMakeFiles/runme.dir/src/game.cpp.o: /home/phagmaier/Desktop/Code/2048/New/src/game.cpp
+CMakeFiles/runme.dir/src/game.cpp.o: /home/phagmaier/Desktop/Code/2048/Engine/src/game.cpp
 CMakeFiles/runme.dir/src/game.cpp.o: CMakeFiles/runme.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/phagmaier/Desktop/Code/2048/New/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/runme.dir/src/game.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/runme.dir/src/game.cpp.o -MF CMakeFiles/runme.dir/src/game.cpp.o.d -o CMakeFiles/runme.dir/src/game.cpp.o -c /home/phagmaier/Desktop/Code/2048/New/src/game.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/phagmaier/Desktop/Code/2048/Engine/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/runme.dir/src/game.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/runme.dir/src/game.cpp.o -MF CMakeFiles/runme.dir/src/game.cpp.o.d -o CMakeFiles/runme.dir/src/game.cpp.o -c /home/phagmaier/Desktop/Code/2048/Engine/src/game.cpp
 
 CMakeFiles/runme.dir/src/game.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/runme.dir/src/game.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phagmaier/Desktop/Code/2048/New/src/game.cpp > CMakeFiles/runme.dir/src/game.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phagmaier/Desktop/Code/2048/Engine/src/game.cpp > CMakeFiles/runme.dir/src/game.cpp.i
 
 CMakeFiles/runme.dir/src/game.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/runme.dir/src/game.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phagmaier/Desktop/Code/2048/New/src/game.cpp -o CMakeFiles/runme.dir/src/game.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phagmaier/Desktop/Code/2048/Engine/src/game.cpp -o CMakeFiles/runme.dir/src/game.cpp.s
 
 CMakeFiles/runme.dir/src/main.cpp.o: CMakeFiles/runme.dir/flags.make
-CMakeFiles/runme.dir/src/main.cpp.o: /home/phagmaier/Desktop/Code/2048/New/src/main.cpp
+CMakeFiles/runme.dir/src/main.cpp.o: /home/phagmaier/Desktop/Code/2048/Engine/src/main.cpp
 CMakeFiles/runme.dir/src/main.cpp.o: CMakeFiles/runme.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/phagmaier/Desktop/Code/2048/New/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/runme.dir/src/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/runme.dir/src/main.cpp.o -MF CMakeFiles/runme.dir/src/main.cpp.o.d -o CMakeFiles/runme.dir/src/main.cpp.o -c /home/phagmaier/Desktop/Code/2048/New/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/phagmaier/Desktop/Code/2048/Engine/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/runme.dir/src/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/runme.dir/src/main.cpp.o -MF CMakeFiles/runme.dir/src/main.cpp.o.d -o CMakeFiles/runme.dir/src/main.cpp.o -c /home/phagmaier/Desktop/Code/2048/Engine/src/main.cpp
 
 CMakeFiles/runme.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/runme.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phagmaier/Desktop/Code/2048/New/src/main.cpp > CMakeFiles/runme.dir/src/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phagmaier/Desktop/Code/2048/Engine/src/main.cpp > CMakeFiles/runme.dir/src/main.cpp.i
 
 CMakeFiles/runme.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/runme.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phagmaier/Desktop/Code/2048/New/src/main.cpp -o CMakeFiles/runme.dir/src/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phagmaier/Desktop/Code/2048/Engine/src/main.cpp -o CMakeFiles/runme.dir/src/main.cpp.s
 
 CMakeFiles/runme.dir/src/nn.cpp.o: CMakeFiles/runme.dir/flags.make
-CMakeFiles/runme.dir/src/nn.cpp.o: /home/phagmaier/Desktop/Code/2048/New/src/nn.cpp
+CMakeFiles/runme.dir/src/nn.cpp.o: /home/phagmaier/Desktop/Code/2048/Engine/src/nn.cpp
 CMakeFiles/runme.dir/src/nn.cpp.o: CMakeFiles/runme.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/phagmaier/Desktop/Code/2048/New/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/runme.dir/src/nn.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/runme.dir/src/nn.cpp.o -MF CMakeFiles/runme.dir/src/nn.cpp.o.d -o CMakeFiles/runme.dir/src/nn.cpp.o -c /home/phagmaier/Desktop/Code/2048/New/src/nn.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/phagmaier/Desktop/Code/2048/Engine/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/runme.dir/src/nn.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/runme.dir/src/nn.cpp.o -MF CMakeFiles/runme.dir/src/nn.cpp.o.d -o CMakeFiles/runme.dir/src/nn.cpp.o -c /home/phagmaier/Desktop/Code/2048/Engine/src/nn.cpp
 
 CMakeFiles/runme.dir/src/nn.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/runme.dir/src/nn.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phagmaier/Desktop/Code/2048/New/src/nn.cpp > CMakeFiles/runme.dir/src/nn.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phagmaier/Desktop/Code/2048/Engine/src/nn.cpp > CMakeFiles/runme.dir/src/nn.cpp.i
 
 CMakeFiles/runme.dir/src/nn.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/runme.dir/src/nn.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phagmaier/Desktop/Code/2048/New/src/nn.cpp -o CMakeFiles/runme.dir/src/nn.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phagmaier/Desktop/Code/2048/Engine/src/nn.cpp -o CMakeFiles/runme.dir/src/nn.cpp.s
+
+CMakeFiles/runme.dir/src/value.cpp.o: CMakeFiles/runme.dir/flags.make
+CMakeFiles/runme.dir/src/value.cpp.o: /home/phagmaier/Desktop/Code/2048/Engine/src/value.cpp
+CMakeFiles/runme.dir/src/value.cpp.o: CMakeFiles/runme.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/phagmaier/Desktop/Code/2048/Engine/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/runme.dir/src/value.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/runme.dir/src/value.cpp.o -MF CMakeFiles/runme.dir/src/value.cpp.o.d -o CMakeFiles/runme.dir/src/value.cpp.o -c /home/phagmaier/Desktop/Code/2048/Engine/src/value.cpp
+
+CMakeFiles/runme.dir/src/value.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/runme.dir/src/value.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phagmaier/Desktop/Code/2048/Engine/src/value.cpp > CMakeFiles/runme.dir/src/value.cpp.i
+
+CMakeFiles/runme.dir/src/value.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/runme.dir/src/value.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phagmaier/Desktop/Code/2048/Engine/src/value.cpp -o CMakeFiles/runme.dir/src/value.cpp.s
+
+CMakeFiles/runme.dir/src/myFunctions.cpp.o: CMakeFiles/runme.dir/flags.make
+CMakeFiles/runme.dir/src/myFunctions.cpp.o: /home/phagmaier/Desktop/Code/2048/Engine/src/myFunctions.cpp
+CMakeFiles/runme.dir/src/myFunctions.cpp.o: CMakeFiles/runme.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/phagmaier/Desktop/Code/2048/Engine/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/runme.dir/src/myFunctions.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/runme.dir/src/myFunctions.cpp.o -MF CMakeFiles/runme.dir/src/myFunctions.cpp.o.d -o CMakeFiles/runme.dir/src/myFunctions.cpp.o -c /home/phagmaier/Desktop/Code/2048/Engine/src/myFunctions.cpp
+
+CMakeFiles/runme.dir/src/myFunctions.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/runme.dir/src/myFunctions.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/phagmaier/Desktop/Code/2048/Engine/src/myFunctions.cpp > CMakeFiles/runme.dir/src/myFunctions.cpp.i
+
+CMakeFiles/runme.dir/src/myFunctions.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/runme.dir/src/myFunctions.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/phagmaier/Desktop/Code/2048/Engine/src/myFunctions.cpp -o CMakeFiles/runme.dir/src/myFunctions.cpp.s
 
 # Object files for target runme
 runme_OBJECTS = \
 "CMakeFiles/runme.dir/src/game.cpp.o" \
 "CMakeFiles/runme.dir/src/main.cpp.o" \
-"CMakeFiles/runme.dir/src/nn.cpp.o"
+"CMakeFiles/runme.dir/src/nn.cpp.o" \
+"CMakeFiles/runme.dir/src/value.cpp.o" \
+"CMakeFiles/runme.dir/src/myFunctions.cpp.o"
 
 # External object files for target runme
 runme_EXTERNAL_OBJECTS =
@@ -123,9 +153,11 @@ runme_EXTERNAL_OBJECTS =
 runme: CMakeFiles/runme.dir/src/game.cpp.o
 runme: CMakeFiles/runme.dir/src/main.cpp.o
 runme: CMakeFiles/runme.dir/src/nn.cpp.o
+runme: CMakeFiles/runme.dir/src/value.cpp.o
+runme: CMakeFiles/runme.dir/src/myFunctions.cpp.o
 runme: CMakeFiles/runme.dir/build.make
 runme: CMakeFiles/runme.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/phagmaier/Desktop/Code/2048/New/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable runme"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/phagmaier/Desktop/Code/2048/Engine/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable runme"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/runme.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -137,6 +169,6 @@ CMakeFiles/runme.dir/clean:
 .PHONY : CMakeFiles/runme.dir/clean
 
 CMakeFiles/runme.dir/depend:
-	cd /home/phagmaier/Desktop/Code/2048/New/bin && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/phagmaier/Desktop/Code/2048/New /home/phagmaier/Desktop/Code/2048/New /home/phagmaier/Desktop/Code/2048/New/bin /home/phagmaier/Desktop/Code/2048/New/bin /home/phagmaier/Desktop/Code/2048/New/bin/CMakeFiles/runme.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/phagmaier/Desktop/Code/2048/Engine/bin && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/phagmaier/Desktop/Code/2048/Engine /home/phagmaier/Desktop/Code/2048/Engine /home/phagmaier/Desktop/Code/2048/Engine/bin /home/phagmaier/Desktop/Code/2048/Engine/bin /home/phagmaier/Desktop/Code/2048/Engine/bin/CMakeFiles/runme.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/runme.dir/depend
 

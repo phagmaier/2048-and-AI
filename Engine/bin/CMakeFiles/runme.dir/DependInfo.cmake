@@ -8,9 +8,11 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/phagmaier/Desktop/Code/2048/New/src/game.cpp" "CMakeFiles/runme.dir/src/game.cpp.o" "gcc" "CMakeFiles/runme.dir/src/game.cpp.o.d"
-  "/home/phagmaier/Desktop/Code/2048/New/src/main.cpp" "CMakeFiles/runme.dir/src/main.cpp.o" "gcc" "CMakeFiles/runme.dir/src/main.cpp.o.d"
-  "/home/phagmaier/Desktop/Code/2048/New/src/nn.cpp" "CMakeFiles/runme.dir/src/nn.cpp.o" "gcc" "CMakeFiles/runme.dir/src/nn.cpp.o.d"
+  "/home/phagmaier/Desktop/Code/2048/Engine/src/game.cpp" "CMakeFiles/runme.dir/src/game.cpp.o" "gcc" "CMakeFiles/runme.dir/src/game.cpp.o.d"
+  "/home/phagmaier/Desktop/Code/2048/Engine/src/main.cpp" "CMakeFiles/runme.dir/src/main.cpp.o" "gcc" "CMakeFiles/runme.dir/src/main.cpp.o.d"
+  "/home/phagmaier/Desktop/Code/2048/Engine/src/myFunctions.cpp" "CMakeFiles/runme.dir/src/myFunctions.cpp.o" "gcc" "CMakeFiles/runme.dir/src/myFunctions.cpp.o.d"
+  "/home/phagmaier/Desktop/Code/2048/Engine/src/nn.cpp" "CMakeFiles/runme.dir/src/nn.cpp.o" "gcc" "CMakeFiles/runme.dir/src/nn.cpp.o.d"
+  "/home/phagmaier/Desktop/Code/2048/Engine/src/value.cpp" "CMakeFiles/runme.dir/src/value.cpp.o" "gcc" "CMakeFiles/runme.dir/src/value.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

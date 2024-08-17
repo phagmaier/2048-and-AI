@@ -1,7 +1,7 @@
 CMakeFiles/runme.dir/src/nn.cpp.o: \
- /home/phagmaier/Desktop/Code/2048/New/src/nn.cpp \
+ /home/phagmaier/Desktop/Code/2048/Engine/src/nn.cpp \
  /usr/include/stdc-predef.h \
- /home/phagmaier/Desktop/Code/2048/New/src/nn.h \
+ /home/phagmaier/Desktop/Code/2048/Engine/src/nn.h \
  /usr/include/c++/14.2.1/random \
  /usr/include/c++/14.2.1/bits/requires_hosted.h \
  /usr/include/c++/14.2.1/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -151,7 +151,7 @@ CMakeFiles/runme.dir/src/nn.cpp.o: \
  /usr/include/c++/14.2.1/bits/stl_numeric.h \
  /usr/include/c++/14.2.1/pstl/glue_numeric_defs.h \
  /usr/include/c++/14.2.1/pstl/execution_defs.h \
- /home/phagmaier/Desktop/Code/2048/New/src/game.h \
+ /home/phagmaier/Desktop/Code/2048/Engine/src/game.h \
  /usr/include/c++/14.2.1/iostream /usr/include/c++/14.2.1/ostream \
  /usr/include/c++/14.2.1/ios /usr/include/c++/14.2.1/exception \
  /usr/include/c++/14.2.1/bits/exception_ptr.h \

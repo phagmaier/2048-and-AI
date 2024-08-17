@@ -15,19 +15,6 @@ void copy_board(int board[4][4], int empty_board[4][4]){
   }
 }
 
-//useless as of now
-int get_max_square(int arr[4][4]){
-  int maxx = 0;
-  for (int i=0;i<4;++i){
-    for (int x=0;x<4;++x){
-      if (arr[i][x] > maxx){
-        maxx = arr[i][x];
-      }
-    }
-  }
-  return maxx;
-}
-
 
 void print_dir(Direction dir){
   switch (dir){
@@ -87,17 +74,6 @@ static std::default_random_engine generator;
   return distribution(generator);
 }
 
-float get_random_tile(){
-  static std::random_device rd;
-  static std::mt19937 gen(rd());
-  static std::uniform_int_distribution<> distrib(1, 10);
-  if (distrib(gen) > 1) {
-    return 2;
-  }
-  return 4;
-}
-
-//useless as of now
 void init_weights(float *arr, int size){
   for (int i=0;i<size;++i){
     arr[i] = get_random_float();
@@ -137,7 +113,6 @@ void multiply_layers(float* input, float* weights, int row1, int col1, int row2,
     }
 }
 
-//useless as of now
 int get_scaled_num(int num) {
     int original = num;
     int count = 0;
@@ -149,7 +124,6 @@ int get_scaled_num(int num) {
     return count+1;
 }
 
-//useless as of now
 Direction get_max(float *arr, int board[4][4]){
   static std::unordered_map<int,Direction> dic = {
   {0,Left},{1,Right}, {2,Down}, {3,Up}
