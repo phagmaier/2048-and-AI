@@ -6,11 +6,12 @@
 
 #include "value.h"
 #include <cmath>
-#include "value.h"
+#include <algorithm>
 
 Value operator+(const float& left, Value& right);
 Value operator*(const float& left, Value& right);
 Value operator-(const float& left, Value& right);
+Value relu(Value &val);
 //Value relu(Value& myVal);
 //Value tan_h(Value& myVal);
 

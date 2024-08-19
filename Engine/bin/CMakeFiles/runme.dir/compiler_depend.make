@@ -255,6 +255,7 @@ CMakeFiles/runme.dir/src/game.cpp.o: /home/phagmaier/Desktop/Code/2048/Engine/sr
 
 CMakeFiles/runme.dir/src/main.cpp.o: /home/phagmaier/Desktop/Code/2048/Engine/src/main.cpp \
   /home/phagmaier/Desktop/Code/2048/Engine/src/game.h \
+  /home/phagmaier/Desktop/Code/2048/Engine/src/myFunctions.h \
   /home/phagmaier/Desktop/Code/2048/Engine/src/nn.h \
   /home/phagmaier/Desktop/Code/2048/Engine/src/value.h \
   /usr/include/alloca.h \
@@ -789,7 +790,9 @@ CMakeFiles/runme.dir/src/myFunctions.cpp.o: /home/phagmaier/Desktop/Code/2048/En
 
 CMakeFiles/runme.dir/src/nn.cpp.o: /home/phagmaier/Desktop/Code/2048/Engine/src/nn.cpp \
   /home/phagmaier/Desktop/Code/2048/Engine/src/game.h \
+  /home/phagmaier/Desktop/Code/2048/Engine/src/myFunctions.h \
   /home/phagmaier/Desktop/Code/2048/Engine/src/nn.h \
+  /home/phagmaier/Desktop/Code/2048/Engine/src/value.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \
@@ -867,8 +870,11 @@ CMakeFiles/runme.dir/src/nn.cpp.o: /home/phagmaier/Desktop/Code/2048/Engine/src/
   /usr/include/bits/wchar.h \
   /usr/include/bits/wctype-wchar.h \
   /usr/include/bits/wordsize.h \
+  /usr/include/c++/14.2.1/algorithm \
+  /usr/include/c++/14.2.1/array \
   /usr/include/c++/14.2.1/backward/binders.h \
   /usr/include/c++/14.2.1/bit \
+  /usr/include/c++/14.2.1/bits/algorithmfwd.h \
   /usr/include/c++/14.2.1/bits/alloc_traits.h \
   /usr/include/c++/14.2.1/bits/allocator.h \
   /usr/include/c++/14.2.1/bits/basic_ios.h \
@@ -915,6 +921,8 @@ CMakeFiles/runme.dir/src/nn.cpp.o: /home/phagmaier/Desktop/Code/2048/Engine/src/
   /usr/include/c++/14.2.1/bits/random.h \
   /usr/include/c++/14.2.1/bits/random.tcc \
   /usr/include/c++/14.2.1/bits/range_access.h \
+  /usr/include/c++/14.2.1/bits/ranges_algo.h \
+  /usr/include/c++/14.2.1/bits/ranges_algobase.h \
   /usr/include/c++/14.2.1/bits/ranges_base.h \
   /usr/include/c++/14.2.1/bits/ranges_cmp.h \
   /usr/include/c++/14.2.1/bits/ranges_util.h \
@@ -922,16 +930,23 @@ CMakeFiles/runme.dir/src/nn.cpp.o: /home/phagmaier/Desktop/Code/2048/Engine/src/
   /usr/include/c++/14.2.1/bits/requires_hosted.h \
   /usr/include/c++/14.2.1/bits/specfun.h \
   /usr/include/c++/14.2.1/bits/std_abs.h \
+  /usr/include/c++/14.2.1/bits/std_function.h \
+  /usr/include/c++/14.2.1/bits/stl_algo.h \
   /usr/include/c++/14.2.1/bits/stl_algobase.h \
   /usr/include/c++/14.2.1/bits/stl_bvector.h \
   /usr/include/c++/14.2.1/bits/stl_construct.h \
   /usr/include/c++/14.2.1/bits/stl_function.h \
+  /usr/include/c++/14.2.1/bits/stl_heap.h \
   /usr/include/c++/14.2.1/bits/stl_iterator.h \
   /usr/include/c++/14.2.1/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/14.2.1/bits/stl_iterator_base_types.h \
+  /usr/include/c++/14.2.1/bits/stl_multiset.h \
   /usr/include/c++/14.2.1/bits/stl_numeric.h \
   /usr/include/c++/14.2.1/bits/stl_pair.h \
   /usr/include/c++/14.2.1/bits/stl_relops.h \
+  /usr/include/c++/14.2.1/bits/stl_set.h \
+  /usr/include/c++/14.2.1/bits/stl_tempbuf.h \
+  /usr/include/c++/14.2.1/bits/stl_tree.h \
   /usr/include/c++/14.2.1/bits/stl_uninitialized.h \
   /usr/include/c++/14.2.1/bits/stl_vector.h \
   /usr/include/c++/14.2.1/bits/streambuf.tcc \
@@ -967,6 +982,7 @@ CMakeFiles/runme.dir/src/nn.cpp.o: /home/phagmaier/Desktop/Code/2048/Engine/src/
   /usr/include/c++/14.2.1/ext/numeric_traits.h \
   /usr/include/c++/14.2.1/ext/string_conversions.h \
   /usr/include/c++/14.2.1/ext/type_traits.h \
+  /usr/include/c++/14.2.1/functional \
   /usr/include/c++/14.2.1/initializer_list \
   /usr/include/c++/14.2.1/ios \
   /usr/include/c++/14.2.1/iosfwd \
@@ -978,9 +994,11 @@ CMakeFiles/runme.dir/src/nn.cpp.o: /home/phagmaier/Desktop/Code/2048/Engine/src/
   /usr/include/c++/14.2.1/numeric \
   /usr/include/c++/14.2.1/ostream \
   /usr/include/c++/14.2.1/pstl/execution_defs.h \
+  /usr/include/c++/14.2.1/pstl/glue_algorithm_defs.h \
   /usr/include/c++/14.2.1/pstl/glue_numeric_defs.h \
   /usr/include/c++/14.2.1/pstl/pstl_config.h \
   /usr/include/c++/14.2.1/random \
+  /usr/include/c++/14.2.1/set \
   /usr/include/c++/14.2.1/stdexcept \
   /usr/include/c++/14.2.1/stdlib.h \
   /usr/include/c++/14.2.1/streambuf \
@@ -1523,10 +1541,6 @@ CMakeFiles/runme.dir/src/value.cpp.o: /home/phagmaier/Desktop/Code/2048/Engine/s
 
 /usr/include/asm-generic/errno-base.h:
 
-/home/phagmaier/Desktop/Code/2048/Engine/src/myFunctions.h:
-
-/usr/include/bits/locale.h:
-
 /usr/include/alloca.h:
 
 /usr/include/c++/14.2.1/tr1/exp_integral.tcc:
@@ -1797,6 +1811,10 @@ CMakeFiles/runme.dir/src/value.cpp.o: /home/phagmaier/Desktop/Code/2048/Engine/s
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/pmmintrin.h:
 
+/usr/include/c++/14.2.1/array:
+
+/usr/include/c++/14.2.1/type_traits:
+
 /usr/include/c++/14.2.1/system_error:
 
 /usr/include/c++/14.2.1/x86_64-pc-linux-gnu/bits/error_constants.h:
@@ -1863,10 +1881,10 @@ CMakeFiles/runme.dir/src/value.cpp.o: /home/phagmaier/Desktop/Code/2048/Engine/s
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/xmmintrin.h:
 
+/usr/include/bits/locale.h:
+
+/home/phagmaier/Desktop/Code/2048/Engine/src/myFunctions.h:
+
 /usr/include/c++/14.2.1/bits/postypes.h:
 
 /usr/include/c++/14.2.1/algorithm:
-
-/usr/include/c++/14.2.1/type_traits:
-
-/usr/include/c++/14.2.1/array:

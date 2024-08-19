@@ -1,0 +1,14 @@
+okay what you are essentially going to do is do your
+current thing of playing a bunch of games and then 
+you'll write the board and then a newline and then the
+move to be taken as recieved from our current shitty 
+brute force solver 
+
+and this will be your training data and once you have 
+that so it's weights are at least somewhat decent you
+can then do an iterative improvments thing where 
+at each state of a game you can then check what would
+happen on 100 random games using your current weights and 
+taking this decision and if it turns out to be the best move
+no update and then you can lower the weights of the others 
+through gradient decent

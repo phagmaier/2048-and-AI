@@ -38,10 +38,9 @@ void print_dir(Direction dir){
   }
 }
 
-//useless as of now
-void zero_arr(float *arr, int size){
+void zero_arr(Value *arr, int size){
   for (int i=0;i<size;++i){
-    arr[i] = 0;
+    arr[i] = Value();
   }
 }
 //useless as of now
@@ -67,51 +66,56 @@ float *create_weights(int num){
   return arr;
 }
 
-//useless as of now
-float get_random_scaler(){
-static std::default_random_engine generator;
-  std::uniform_real_distribution<float> distribution(0.9f, 0.01);
-  return distribution(generator);
-}
-
 void init_weights(float *arr, int size){
   for (int i=0;i<size;++i){
     arr[i] = get_random_float();
   }
 }
 
+/*
 //useless as of now
-void relu(float *inputs, int size) {
-    for (int i = 0; i < size; ++i) {
-        inputs[i] = std::max(0.0f, inputs[i]);
-    }
-}
-
-//useless as of now
-void leaky_relu(float *inputs, int size){
-    for (int i=0; i<size; ++i) {
-        inputs[i] = (inputs[i] > 0) ? inputs[i] : ALPHA * inputs[i];
-    }
-}
-
-//useless as of now
-void multiply_layers(float* input, float* weights, int row1, int col1, int row2, int col2, float* output) {
+void multiply_layers(std::vector<std::vector<Value>> input, std::vector<std::vector<Value>> weights, std::vector<std::vector<Value>> output) {
     // Check for dimension compatibility: col1 must be equal to row2
-    if (col1 != row2) {
-        std::cerr << "Matrix dimensions do not match for multiplication!" << std::endl;
-        return;
-    }
-
-    for (int i = 0; i < row1; ++i) {
-        for (int j = 0; j < col2; ++j) {
-            float sum = 0;
-            for (int k = 0; k < col1; ++k) {
-                sum += input[convert_cords(i, k, col1)] * weights[convert_cords(k, j, col2)];
+    assert(input[0].size()!= weights.size());
+    
+    for (int i = 0; i < input.size(); ++i) {
+        for (int j = 0; j < weights[0].size(); ++j) {
+            Value sum = Value();
+            for (int k = 0; k < input[0].size(); ++k) {
+                float temp = sum.val;
+                sum = input[convert_cords(i, k, input[0].size())] * weights[convert_cords(k, j, weights[0].size())];
+                sum = sum + temp;
             }
             output[convert_cords(i, j, col2)] = sum;
         }
     }
 }
+*/
+
+std::vector<std::vector<Value>> multiply_layers(std::vector<std::vector<Value>> input, std::vector<std::vector<Value>> weights, std::vector<std::vector<Value>> output) {
+  int rows_input = input.size();
+  int cols_input = input[0].size();
+  int rows_weights = weights.size();
+  int cols_weights = weights[0].size();
+  assert(cols_input == rows_weights);
+  
+  std::vector<std::vector<Value>> result(rows_input, std::vector<Value>(cols_weights, Value()));
+
+    // Perform matrix multiplication
+  for (int i = 0; i < rows_input; ++i) {
+    for (int j = 0; j < cols_weights; ++j) {
+      for (int k = 0; k < cols_input; ++k) {
+        //float temp = result[i][j].val;
+        result[i][j] += input[i][k] * weights[k][j];
+        //result[i][j] = result[i][j] + temp;
+      }
+    }
+  }
+
+  return result;
+
+}
+
 
 int get_scaled_num(int num) {
     int original = num;
@@ -143,16 +147,9 @@ Direction get_max(float *arr, int board[4][4]){
   return dir;
 }
 
-//useless as of now
-void update_layer(float *best_layer, float *worse_layer, int range){
-  for (int i=0; i<range;++i){
-    if (worse_layer[i] >= 0){
-      worse_layer[i] += best_layer[i] > worse_layer[i] ? worse_layer[i] * SCALER : -worse_layer[i] * SCALER;
-    }
-    else{
-      worse_layer[i] -= best_layer[i] > worse_layer[i] ? worse_layer[i] * SCALER : -worse_layer[i] * SCALER;
-    }
-  }
+
+void update_layer(Value *weights, int rows, int cols){
+  
 }
 
 //useless as of now
@@ -179,24 +176,23 @@ void update(int board[4][4], float *my_board){
 }
 
 //useless as of now
-Direction run_through_NN(float *inputs, float *w1, float *w2, float *w3, int board[4][4]){
-  //static int row2 =-1;
-  float hidden1[ROW3 * COL3];
-  float hidden2[ROW5 * COL5];
+Direction run_through_NN(Value *inputs, Value *w1, Value *w2, Value *w3, int board[4][4]){  
+  Value hidden1[H1_ROWS * H1_COLS];
+  Value hidden2[H2_ROWS * H2_COLS];
   float outputs[OUTPUT_LAYER];
-  zero_arr(hidden1, LAYER_1);
-  zero_arr(hidden2, LAYER_2);
+  zero_arr(hidden1, H1_ROWS * H1_COLS);
+  zero_arr(hidden2, H2_ROWS * H2_COLS);
   zero_arr(outputs, OUTPUT_LAYER);
-
+  /*
+    *NEED A FUNCTION THAT WILL APPLY RELU TO ALL
+    *VALUES IN A LIST WILL HAVE TO PASS THE DIMENSIONS
+    */
   multiply_layers(inputs, w1,ROW1,COL1,ROW2,COL2,hidden1);
-  //leaky_relu(hidden1,LAYER_1);
-  relu(hidden1, ROW3 * COL3);
+  //relu(hidden1, ROW3 * COL3);
   multiply_layers(hidden1,w2,ROW3,COL3,ROW4,COL4, hidden2);
-  //leaky_relu(hidden2,LAYER_2);
-  relu(hidden2, ROW5 * COL6);
+  //relu(hidden2, ROW5 * COL6);
   multiply_layers(hidden2,w3,ROW4,COL4,ROW5,COL5,outputs);
-  //leaky_relu(outputs,OUTPUT_LAYER);
-  relu(outputs, OUTPUT_LAYER);
+  //relu(outputs, OUTPUT_LAYER);
   return get_max(outputs, board);
 }
 int get_best_weights(float arr[NN_NUMBER]){

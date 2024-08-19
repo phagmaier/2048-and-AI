@@ -1,113 +1,132 @@
 #include "value.h"
 
-Value::Value(float v): val(v), grad(0) {}
+using PTR = std::shared_ptr<Value>;
 
-float Value::get_grad() const{
-    return grad;
+Value::Value() : val{0}, grad{0}, parent1{nullptr}, parent2{nullptr}, op{None} {}
+Value::Value(float val) : val{val}, grad{0}, parent1{nullptr}, parent2{nullptr}, op{None} {}
+Value::Value(float val, std::shared_ptr<Value> p1, Operation op): val{val}, parent1{p1}, parent2{nullptr}, op{op},parents {parent1} {}
+
+Value::Value(float val, std::shared_ptr<Value> p1, std::shared_ptr<Value> p2, Operation op):
+  val{val},parent1{p1},parent2{p2},op{op}, parents{p1,p2}{}
+
+std::shared_ptr<Value> operator+(std::shared_ptr<Value> &lhs, std::shared_ptr<Value> &rhs){
+  return std::make_shared<Value>(lhs->val+rhs->val,lhs,rhs,Add);
+}
+std::shared_ptr<Value> operator*(std::shared_ptr<Value> &lhs, std::shared_ptr<Value> &rhs){
+  return std::make_shared<Value>(lhs->val*rhs->val,lhs,rhs,Mul);
 }
 
-float Value::get_value(){
-    return grad;
+
+std::shared_ptr<Value> pow(std::shared_ptr<Value> &val, float other){
+  //out = Value(self.data**other, (self,), f'**{other}')
+  PTR ptr = std::make_shared<Value>(other);
+  return std::make_shared<Value>(std::pow(val->val,other),val,ptr,Pow);
 }
 
-Value Value::operator+(Value& other) {
-    Value out{val + other.val};
-    out.children.insert(this);
-    out.children.insert(&other);
-    out.my_back = [this,&other,&out](){
-        this->grad += out.grad;
-        other.grad += out.grad;
-    };
-    return out;
+std::shared_ptr<Value> relu(std::shared_ptr<Value> &val){
+  //out = Value(0 if self.data < 0 else self.data, (self,), 'ReLU')
+  float num = val->val > 0 ? val->val : 0;
+  return std::make_shared<Value>(num,val,Relu);
 }
 
-Value Value::operator+(const float& other) {
-    Value val_other{other};
-    return *this + val_other;
+std::shared_ptr<Value> operator-(std::shared_ptr<Value> &val){
+  PTR ptr = std::make_shared<Value>(-1);
+  return val * ptr;
 }
 
-Value Value::operator*(Value& other) {
-    Value out{val * other.val};
-    out.children.insert(this);
-    out.children.insert(&other);
-
-    out.my_back = [this,&other,&out](){
-        this->grad += other.val * out.grad;
-        other.grad += this->val * out.grad;
-
-    };
-    return out;
+std::shared_ptr<Value> operator-(std::shared_ptr<Value> &lhs, std::shared_ptr<Value> &rhs){
+  PTR ptr = -rhs;
+  return lhs + ptr;
 }
 
-Value Value::operator*(const float& other) {
-    Value val_other{other};
-    return *this * val_other;
+std::shared_ptr<Value> operator/(std::shared_ptr<Value> &lhs, std::shared_ptr<Value> &rhs){
+  PTR ptr = pow(rhs,-1);
+  return lhs * ptr;
 }
 
-Value Value::operator-() {
-    return *this * -1;
+
+
+void Value::back_add(){
+  parent1->grad += grad;
+  parent2->grad += grad;
 }
 
-Value Value::operator-(Value& other) {
-    return {-other + *this};
+void Value::back_mul(){
+  parent1->grad += parent2->grad * grad;
+  parent2->grad += parent1->grad * grad;
 }
 
-Value Value::operator-(float& other) {
-    Value val_other{other};
-    return *this - val_other;
-}
-Value Value::power(const float &power_to){
-  Value out = Value{std::pow(val,power_to)};
-  out.children.insert(this);
-  my_back = [this, &out, &power_to](){
-    grad += (power_to * std::pow(val,(power_to-1))) * out.grad;
-  };
-  return out;
+void Value::back_pow(){
+  parent1->grad += (parent2->val * std::pow(parent1->val,parent2->val-1)) * grad;
 }
 
-Value Value::operator/(Value& other) {
-    Value temp{power(-1)};
-    return power(-1) * other;
+void Value::back_relu(){
+  float num = val > 0 ? val : 0;
+  parent1->grad += num * grad;
 }
 
-void Value::build_topo(Value* v, std::vector<Value*>& topo,
-                       std::set<Value*>& visited){
-    if (visited.find(v) == visited.end()){
-        visited.insert(v);
-        for (const auto& child : v->children){
-            build_topo(child, topo,visited);
-        }
-        topo.push_back(v);
+
+
+
+
+void Value::get_grad_func(){
+  switch(op) {
+  case Add:
+      back_add();
+    break;
+  case Sub:
+    std::cout << "SUB NOT IMPLIMENTED YET\n";    
+    break;
+  case Mul:
+    back_mul();
+    break;
+  case Div:
+    std::cout << "DIV NOT IMPLIMENTED YET\n";    
+    break;
+  case Pow:
+    back_pow();
+    break;
+  case Sig:
+    std::cout << "SIG NOT IMPLIMENTED YET\n";    
+    break;
+  case Relu:
+    back_relu();
+    break;
+  default:
+    std::cout << "Was a NOne type operation\n";
+}
+}
+
+std::ostream& operator<<(std::ostream& os, const std::shared_ptr<Value>& obj){
+  os << "VALUE: " << obj->val << " " << "GRADIENT: " << obj->grad << "\n";
+  return os;
+}
+
+
+void build_topo(std::shared_ptr<Value> const &v, std::vector<std::shared_ptr<Value>> &topo, std::unordered_set<std::shared_ptr<Value>> &visited){
+  if (!visited.count(v)){
+    visited.insert(v);
+    for (std::shared_ptr<Value> const &child : v->parents){
+      build_topo(child, topo,visited);
     }
+    topo.push_back(v);
+  } 
 }
 
-//NOTE: if not a value in memory pass copy to lambda func
-//Should probably try and impliment it as a function as well
-Value Value::tanh_h() {
-    float t = std::tanh(val);
-    Value out{t};
-    out.children.insert(this);
-    out.my_back = [this, &out, t](){
-        this->grad += (1 - (t * t)) * out.grad;
-    };
-    return out;
+void backward(std::shared_ptr<Value> &value){
+  std::vector<std::shared_ptr<Value>> topo;
+  std::unordered_set<std::shared_ptr<Value>> visited;
+  build_topo(value, topo,visited);
+  std::reverse(topo.begin(), topo.end());
+  value->grad = 1;
+  for (std::shared_ptr<Value> &v : topo){
+    v->get_grad_func();
+  }
 }
 
-void Value::backward() {
-   std::vector<Value*> topo;
-   std::set<Value*> visited;
-
-   build_topo(this,topo,visited);
-
-   this->grad = 1;
-   std::reverse(topo.begin(),topo.end());
-
-   for (auto v: topo){
-       v->my_back();
-   }
-}
-
-std::ostream& operator<<(std::ostream& os, const Value& myVal) {
-    os << "Value: " << myVal.val << " Grad: " << myVal.grad << "\n";
-    return os; // You need to return the ostream object.
+//result[i][j] += A[i][k] * B[k][j];
+//Plus Equals Multiply
+std::shared_ptr<Value> PEM(std::shared_ptr<Value> &lhs, std::shared_ptr<Value> &middle, std::shared_ptr<Value> &rhs){
+  PTR ptr = middle * rhs;
+  return lhs + ptr;
 }
