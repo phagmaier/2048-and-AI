@@ -20,8 +20,8 @@ class Value{
 public:
   Value();
   Value(float val);
-  Value(float val, std::shared_ptr<Value> p1, Operation op);
-  Value(float val, std::shared_ptr<Value> p1, std::shared_ptr<Value> p2, Operation op);
+  Value(float val, std::shared_ptr<Value> &p1, Operation op);
+  Value(float val, std::shared_ptr<Value> &p1, std::shared_ptr<Value> &p2, Operation op);
 
 
   float val;

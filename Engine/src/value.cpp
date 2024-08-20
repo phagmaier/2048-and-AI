@@ -4,9 +4,9 @@ using PTR = std::shared_ptr<Value>;
 
 Value::Value() : val{0}, grad{0}, parent1{nullptr}, parent2{nullptr}, op{None} {}
 Value::Value(float val) : val{val}, grad{0}, parent1{nullptr}, parent2{nullptr}, op{None} {}
-Value::Value(float val, std::shared_ptr<Value> p1, Operation op): val{val}, parent1{p1}, parent2{nullptr}, op{op},parents {parent1} {}
+Value::Value(float val, std::shared_ptr<Value> &p1, Operation op): val{val}, parent1{p1}, parent2{nullptr}, op{op},parents {p1} {}
 
-Value::Value(float val, std::shared_ptr<Value> p1, std::shared_ptr<Value> p2, Operation op):
+Value::Value(float val, std::shared_ptr<Value> &p1, std::shared_ptr<Value> &p2, Operation op):
   val{val},parent1{p1},parent2{p2},op{op}, parents{p1,p2}{}
 
 std::shared_ptr<Value> operator+(std::shared_ptr<Value> &lhs, std::shared_ptr<Value> &rhs){
@@ -52,8 +52,8 @@ void Value::back_add(){
 }
 
 void Value::back_mul(){
-  parent1->grad += parent2->grad * grad;
-  parent2->grad += parent1->grad * grad;
+  parent1->grad += parent2->val* grad;
+  parent2->grad += parent1->val* grad;
 }
 
 void Value::back_pow(){
@@ -61,7 +61,7 @@ void Value::back_pow(){
 }
 
 void Value::back_relu(){
-  float num = val > 0 ? val : 0;
+  float num = val > 0 ? 1 : 0;
   parent1->grad += num * grad;
 }
 
@@ -75,25 +75,22 @@ void Value::get_grad_func(){
       back_add();
     break;
   case Sub:
-    std::cout << "SUB NOT IMPLIMENTED YET\n";    
     break;
   case Mul:
     back_mul();
     break;
   case Div:
-    std::cout << "DIV NOT IMPLIMENTED YET\n";    
     break;
   case Pow:
     back_pow();
     break;
   case Sig:
-    std::cout << "SIG NOT IMPLIMENTED YET\n";    
     break;
   case Relu:
     back_relu();
     break;
   default:
-    std::cout << "Was a NOne type operation\n";
+    break;
 }
 }
 
@@ -119,6 +116,7 @@ void backward(std::shared_ptr<Value> &value){
   build_topo(value, topo,visited);
   std::reverse(topo.begin(), topo.end());
   value->grad = 1;
+  //std::cout << "THE SIZE OF TOPO IS: " << topo.size() << "\n";
   for (std::shared_ptr<Value> &v : topo){
     v->get_grad_func();
   }
@@ -127,6 +125,7 @@ void backward(std::shared_ptr<Value> &value){
 //result[i][j] += A[i][k] * B[k][j];
 //Plus Equals Multiply
 std::shared_ptr<Value> PEM(std::shared_ptr<Value> &lhs, std::shared_ptr<Value> &middle, std::shared_ptr<Value> &rhs){
+  //lhs->val *=2;
   PTR ptr = middle * rhs;
   return lhs + ptr;
 }
