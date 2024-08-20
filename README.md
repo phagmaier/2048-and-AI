@@ -19,13 +19,12 @@ or you can check in bin and just run the cmake file
 ## WORK IN PROGRESS
 CURRENTLY IT IS INCREDIBLY SLOW AND NOT OPTIMAL BUT IT
 DOES USUALLY BEAT THE GAME EVEN IF 100 iterations per 
-decision is a lot
-There is also a lot of dumb extra stuff in nn.cpp in the Engine file where
-I was building a very very very stupid simple NN just to test
-and then switched to this. Maybe i'll come back and impliment 
-a real NN later or look at a way to try and do a more sophisticated
-reinforcment learning algo that will bootstrap its own engine 
-to evaluate what is and is not a good position.
+decision is a lot.
+</br>
+I also created a auto grad Value class so that we can create a hand made neural network trained 
+originally on my search results and then once we have decent starting weights we'll use those for the 
+initial weights to essentially do a search and bootstrap of our neural network and see how good we can 
+make this thing
 
 ## File Table
 
