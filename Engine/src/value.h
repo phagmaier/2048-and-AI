@@ -5,8 +5,8 @@
 #include <vector>
 #include <algorithm>
 
-enum Operation{
-  None,
+enum Oper{
+  NONE,
   Add,
   Sub,
   Mul,
@@ -20,15 +20,15 @@ class Value{
 public:
   Value();
   Value(float val);
-  Value(float val, std::shared_ptr<Value> &p1, Operation op);
-  Value(float val, std::shared_ptr<Value> &p1, std::shared_ptr<Value> &p2, Operation op);
+  Value(float val, std::shared_ptr<Value> &p1, Oper op);
+  Value(float val, std::shared_ptr<Value> &p1, std::shared_ptr<Value> &p2, Oper op);
 
 
   float val;
   float grad;
   std::shared_ptr<Value> parent1;
   std::shared_ptr<Value> parent2;
-  Operation op;
+  Oper op;
   std::unordered_set<std::shared_ptr<Value>> parents;
   
   friend std::shared_ptr<Value> operator+(std::shared_ptr<Value> &lhs, std::shared_ptr<Value> &rhs);

@@ -21,7 +21,6 @@
 
 #include "game.h"
 #include "value.h"
-#include "myFunctions.h"
 #include <random>
 #include <utility>
 #include <limits>

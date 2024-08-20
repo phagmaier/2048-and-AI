@@ -2,11 +2,11 @@
 
 using PTR = std::shared_ptr<Value>;
 
-Value::Value() : val{0}, grad{0}, parent1{nullptr}, parent2{nullptr}, op{None} {}
-Value::Value(float val) : val{val}, grad{0}, parent1{nullptr}, parent2{nullptr}, op{None} {}
-Value::Value(float val, std::shared_ptr<Value> &p1, Operation op): val{val}, parent1{p1}, parent2{nullptr}, op{op},parents {p1} {}
+Value::Value() : val{0}, grad{0}, parent1{nullptr}, parent2{nullptr}, op{NONE} {}
+Value::Value(float val) : val{val}, grad{0}, parent1{nullptr}, parent2{nullptr}, op{NONE} {}
+Value::Value(float val, std::shared_ptr<Value> &p1, Oper op): val{val}, parent1{p1}, parent2{nullptr}, op{op},parents {p1} {}
 
-Value::Value(float val, std::shared_ptr<Value> &p1, std::shared_ptr<Value> &p2, Operation op):
+Value::Value(float val, std::shared_ptr<Value> &p1, std::shared_ptr<Value> &p2, Oper op):
   val{val},parent1{p1},parent2{p2},op{op}, parents{p1,p2}{}
 
 std::shared_ptr<Value> operator+(std::shared_ptr<Value> &lhs, std::shared_ptr<Value> &rhs){
@@ -15,7 +15,6 @@ std::shared_ptr<Value> operator+(std::shared_ptr<Value> &lhs, std::shared_ptr<Va
 std::shared_ptr<Value> operator*(std::shared_ptr<Value> &lhs, std::shared_ptr<Value> &rhs){
   return std::make_shared<Value>(lhs->val*rhs->val,lhs,rhs,Mul);
 }
-
 
 std::shared_ptr<Value> pow(std::shared_ptr<Value> &val, float other){
   //out = Value(self.data**other, (self,), f'**{other}')
