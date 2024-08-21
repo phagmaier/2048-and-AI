@@ -88,6 +88,9 @@ Matrix matMul(Matrix &inputs, Matrix &weights){
 void apply_bias_and_activation(Matrix &inputs, PTR &bias){
   for (int i=0;i<inputs.size(); ++i){
     for (int x=0;x<inputs[0].size(); ++x){
+      //PTR temp = inputs[i][x] + bias;
+      //PTR temp2 = relu(inputs[i][x]);
+      //inputs[i][x] = temp2;
       inputs[i][x] = inputs[i][x] + bias;
       inputs[i][x] = relu(inputs[i][x]);
     }
@@ -95,17 +98,12 @@ void apply_bias_and_activation(Matrix &inputs, PTR &bias){
 }
 
 PTR get_error(Matrix &results, std::vector<PTR> &targets){
-  for (int i=0;i<4;++i){
-    std::cout << targets[i] << "\n";
-  }
   PTR total = make_ptr();
   int count =0;
   assert(targets.size() == 4);
   assert(results.size() * results[0].size() == targets.size());
   for (int i=0;i<results.size();++i){
-    for (int x=0;x<results.size();++x){
-      std::cout << count << "\n";
-
+    for (int x=0;x<results[0].size();++x){
       PTR temp = make_ptr(ALPHA);
       PTR diff = targets[count] - results[i][x];
       PTR squared_diff = pow(diff, 2);
@@ -140,40 +138,28 @@ void main_loop(){
   const int w3_rows = 4;
   const int w3_cols= 1;
   //should result in a 4 X 1 matrix
-  std::cout << "IF THIS DOESN'T PRINT A FUNCTION OR SOEMTHING IS FUCKED\n";  
   std::vector<std::vector<std::vector<int>>> tables = parse_tables();
-  std::cout << "was able to get raw table data\n";
   std::vector<std::vector<std::pair<int,float>>> scores = parse_scores();
-  std::cout << "was able to get raw score data\n";
   Data_pair data = get_data(1,tables,scores);
-  std::cout << "was able to parse the data\n";
 
   std::vector<std::vector<PTR>> input = data.first[0];
-  std::cout << "was able to get 1 table\n";
   std::vector<PTR> target = data.second[0];
-  std::cout << "was able to get 1 score\n";
   Matrix w1 = make_weights(w1_rows, w1_cols);
   Matrix w2 = make_weights(w2_rows, w2_cols);
   Matrix w3 = make_weights(w3_rows, w3_cols);
-  std::cout << "was able to get weights\n";
   
   PTR b1 = make_ptr(getRandombias());
   PTR b2 = make_ptr(getRandombias());
   PTR b3 = make_ptr(getRandombias());
-  std::cout << "WAS able to get biases\n";
 
   Matrix h1 = matMul(input, w1);
-  std::cout << "WAS ABLE TO DO MATRIX MULTIPLICATION\n";
   apply_bias_and_activation(h1,b1);
-  std::cout << "WAS ABLE TO APPLY BIAS AND ACTIVATION\n";
   Matrix h2 = matMul(h1,w2);
   apply_bias_and_activation(h2,b2);
 
   Matrix output = matMul(h2,w3);
   apply_bias_and_activation(output,b3);
-  std::cout << "WAS ABLE TO GET THE RESULTS\n";
   PTR error  = get_error(output, target);
-  std::cout << "WAS ABLE TO GET THE ERROR\n";
 
   w1 = update_weights(w1);
   w2 = update_weights(w2);

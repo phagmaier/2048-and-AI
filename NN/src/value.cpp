@@ -116,7 +116,6 @@ void backward(std::shared_ptr<Value> &value){
   build_topo(value, topo,visited);
   std::reverse(topo.begin(), topo.end());
   value->grad = 1;
-  //std::cout << "THE SIZE OF TOPO IS: " << topo.size() << "\n";
   for (std::shared_ptr<Value> &v : topo){
     v->get_grad_func();
   }
